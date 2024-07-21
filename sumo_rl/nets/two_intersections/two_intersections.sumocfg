@@ -1,0 +1,13 @@
+<configuration>
+    <input>
+        <net-file value="two_intersections.net.xml"/>
+        <route-files value="two_intersections.flow.rou.xml"/>
+    </input>
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+    </time>
+    <output>
+        <tripinfo-output value="tripinfo.xml"/>
+    </output>
+</configuration>
