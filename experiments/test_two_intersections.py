@@ -1,6 +1,7 @@
 import argparse
 import os
 import sys
+import csv
 
 if "SUMO_HOME" in os.environ:
     tools = os.path.join(os.environ["SUMO_HOME"], "tools")
@@ -16,6 +17,7 @@ from ray.rllib.algorithms.ppo import PPOConfig
 from ray.rllib.env.wrappers.pettingzoo_env import ParallelPettingZooEnv
 from ray.tune.registry import register_env
 import sumo_rl
+import traci
 
 # 设置仿真环境变量
 
@@ -35,7 +37,7 @@ register_env(
             net_file="sumo_rl/nets/two_intersections/two_intersections.net.xml",
             route_file="sumo_rl/nets/two_intersections/two_intersections.flow.rou.xml",
             out_csv_name="outputs/two_intersections/ppo",
-            use_gui=True,
+            use_gui=False,
             num_seconds=80000,
         )
     ),
@@ -77,7 +79,7 @@ env = ParallelPettingZooEnv(
         net_file="sumo_rl/nets/two_intersections/two_intersections.net.xml",
         route_file="sumo_rl/nets/two_intersections/two_intersections.flow.rou.xml",
         out_csv_name="outputs/two_intersections/ppo",
-        use_gui=True,
+        use_gui=False,
         num_seconds=80000, 
     )
 )
@@ -87,19 +89,38 @@ observations, infos = env.reset()
 max_steps=100000
 step_count=0
 
-while step_count<max_steps:
-    actions = {}
-    for agent in env.par_env.agents:
-        action = PPOagent.compute_single_action(observations[agent])
-        actions[agent] = action
+traci.start(["sumo", "-c", "sumo_rl/nets/two_intersections/two_intersections.sumocfg"])
+with open("vehicle_info.csv", mode="w", newline="") as csvfile:
+    fieldnames = ["step", "agent", "speed", "acceleration","timeLoss"]
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
+    while step_count<max_steps:
+        actions = {}
+        for agent in env.par_env.agents:
+            action = PPOagent.compute_single_action(observations[agent])
+            actions[agent] = action
 
-    observations, rewards, terminations, truncations, infos = env.step(actions)
-    reward_sum += sum(rewards.values())
-    step_count+=1
-    if all(terminations.values()) and all(truncations.values()):
-        break
+        observations, rewards, terminations, truncations, infos = env.step(actions)
+        reward_sum += sum(rewards.values())
+        step_count+=1
+        for agent in traci.vehicle.getIDList():
+            speed = traci.vehicle.getSpeed(agent)
+            acceleration = traci.vehicle.getAcceleration(agent)
+            timeLoss=traci.vehicle.getTimeLoss(agent)
+            writer.writerow({
+                "step": step_count,
+                "agent": agent,
+                "speed": speed,
+                "acceleration": acceleration,
+                "timeLoss":timeLoss
+            })
+        
+        if all(terminations.values()) and all(truncations.values()):
+            break
+        traci.simulationStep()
 
 env.close()
+traci.close()
 
 print(f"Total Reward: {reward_sum}")
 
