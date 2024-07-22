@@ -18,14 +18,13 @@ from ray.tune.registry import register_env
 import sumo_rl
 
 # 设置仿真环境变量
-os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 # 解析命令行参数
-parser = argparse.ArgumentParser(description="Render pretrained policy loaded from checkpoint")
-parser.add_argument("checkpoint_dir", help="Directory containing checkpoint files.")
-args = parser.parse_args()
+#parser = argparse.ArgumentParser(description="Render pretrained policy loaded from checkpoint")
+#parser.add_argument("checkpoint_dir", help="Directory containing checkpoint files.")
+#args = parser.parse_args()
 
-checkpoint_dir = os.path.expanduser(args.checkpoint_dir)
+checkpoint_dir = "/home/lvyx/ray_results/PPO/PPO_two_intersections_ae036_00000_0_2024-07-21_02-12-52/checkpoint_000015/"
 
 # 注册SUMO环境
 env_name = "two_intersections"
@@ -36,7 +35,7 @@ register_env(
             net_file="sumo_rl/nets/two_intersections/two_intersections.net.xml",
             route_file="sumo_rl/nets/two_intersections/two_intersections.flow.rou.xml",
             out_csv_name="outputs/two_intersections/ppo",
-            use_gui=False,
+            use_gui=True,
             num_seconds=80000,
         )
     ),
@@ -79,15 +78,16 @@ env = ParallelPettingZooEnv(
         route_file="sumo_rl/nets/two_intersections/two_intersections.flow.rou.xml",
         out_csv_name="outputs/two_intersections/ppo",
         use_gui=True,
-        num_seconds=80000,
+        num_seconds=80000, 
     )
 )
 
 reward_sum = 0
-frame_list = []
 observations, infos = env.reset()
+max_steps=100000
+step_count=0
 
-while True:
+while step_count<max_steps:
     actions = {}
     for agent in env.par_env.agents:
         action = PPOagent.compute_single_action(observations[agent])
@@ -95,16 +95,12 @@ while True:
 
     observations, rewards, terminations, truncations, infos = env.step(actions)
     reward_sum += sum(rewards.values())
-
-    if env.render_mode == "rgb_array":
-        img = Image.fromarray(env.render())
-        frame_list.append(img)
-
+    step_count+=1
     if all(terminations.values()) and all(truncations.values()):
         break
 
 env.close()
 
 print(f"Total Reward: {reward_sum}")
-if frame_list:
-    frame_list[0].save("out.gif", save_all=True, append_images=frame_list[1:], duration=3, loop=0)
+
+

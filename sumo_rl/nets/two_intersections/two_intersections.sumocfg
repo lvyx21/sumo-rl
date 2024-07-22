@@ -1,13 +1,24 @@
 <configuration>
-    <input>
-        <net-file value="two_intersections.net.xml"/>
-        <route-files value="two_intersections.flow.rou.xml"/>
-    </input>
+        <input>
+            <net-file value="two_intersections.net.xml" />
+            <route-files value="two_intersections.flow.rou.xml" />
+        </input>
+        
+        <gui_only>
+        <tracker-interval value="0.1"/>
+    </gui_only>
+
     <time>
-        <begin value="0"/>
-        <end value="3600"/>
+        <step-length value="0.1"/>
     </time>
+
+    <processing>
+        <lateral-resolution value="0.1"/>
+    </processing>
+
     <output>
+        <output-prefix value='TIME'/>
         <tripinfo-output value="tripinfo.xml"/>
     </output>
+
 </configuration>

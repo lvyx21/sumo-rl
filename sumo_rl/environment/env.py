@@ -104,18 +104,17 @@ class SumoEnvironment(gym.Env):
         sumo_warnings: bool = True,
         additional_sumo_cmd: Optional[str] = None,
         render_mode: Optional[str] = None,
-        tripinfo_file: str = "tripinfo.xml"
+        tripinfo_file:str = "tripinfo.xml"
     ) -> None:
         """Initialize the environment."""
         assert render_mode is None or render_mode in self.metadata["render_modes"], "Invalid render mode."
         self.render_mode = render_mode
         self.virtual_display = virtual_display
         self.disp = None
-
         self._net = net_file
         self._route = route_file
         self.use_gui = use_gui
-        self.tripinfo_file = tripinfo_file 
+        self.tripinfo_file=tripinfo_file 
         if self.use_gui or self.render_mode is not None:
             self._sumo_binary = sumolib.checkBinary("sumo-gui")
         else:
@@ -145,10 +144,10 @@ class SumoEnvironment(gym.Env):
         self.sumo = None
 
         if LIBSUMO:
-            traci.start([sumolib.checkBinary("sumo"), "-n", self._net])  # Start only to retrieve traffic light information
+            traci.start([sumolib.checkBinary("sumo"), "-n", self._net,"--tripinfo-output",self.tripinfo_file])  # Start only to retrieve traffic light information
             conn = traci
         else:
-            traci.start([sumolib.checkBinary("sumo"), "-n", self._net], label="init_connection" + self.label)
+            traci.start([sumolib.checkBinary("sumo"), "-n", self._net,"--tripinfo-output",self.tripinfo_file], label="init_connection" + self.label)
             conn = traci.getConnection("init_connection" + self.label)
 
         self.ts_ids = list(conn.trafficlight.getIDList())
@@ -209,8 +208,8 @@ class SumoEnvironment(gym.Env):
             str(self.waiting_time_memory),
             "--time-to-teleport",
             str(self.time_to_teleport),
-            "--tripinfo-output", 
-            self.tripinfo_file,
+            "--tripinfo-output",
+            self.tripinfo_file
         ]
         if self.begin_time > 0:
             sumo_cmd.append(f"-b {self.begin_time}")
