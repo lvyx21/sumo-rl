@@ -90,34 +90,20 @@ max_steps=100000
 step_count=0
 
 traci.start(["sumo", "-c", "sumo_rl/nets/two_intersections/two_intersections.sumocfg"])
-with open("vehicle_info.csv", mode="w", newline="") as csvfile:
-    fieldnames = ["step", "agent", "speed", "acceleration","timeLoss"]
-    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-    writer.writeheader()
-    while step_count<max_steps:
-        actions = {}
-        for agent in env.par_env.agents:
-            action = PPOagent.compute_single_action(observations[agent])
-            actions[agent] = action
 
-        observations, rewards, terminations, truncations, infos = env.step(actions)
-        reward_sum += sum(rewards.values())
-        step_count+=1
-        for agent in traci.vehicle.getIDList():
-            speed = traci.vehicle.getSpeed(agent)
-            acceleration = traci.vehicle.getAcceleration(agent)
-            timeLoss=traci.vehicle.getTimeLoss(agent)
-            writer.writerow({
-                "step": step_count,
-                "agent": agent,
-                "speed": speed,
-                "acceleration": acceleration,
-                "timeLoss":timeLoss
-            })
+while step_count<max_steps:
+    actions = {}
+    for agent in env.par_env.agents:
+        action = PPOagent.compute_single_action(observations[agent])
+        actions[agent] = action
+
+    observations, rewards, terminations, truncations, infos = env.step(actions)
+    reward_sum += sum(rewards.values())
+    step_count+=1
         
-        if all(terminations.values()) and all(truncations.values()):
-            break
-        traci.simulationStep()
+    if all(terminations.values()) and all(truncations.values()):
+        break
+    traci.simulationStep()
 
 env.close()
 traci.close()
