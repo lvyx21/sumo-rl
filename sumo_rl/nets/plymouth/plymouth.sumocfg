@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+    <input>
+        <net-file value="plymouth_nixon_and_huron.net.xml"/>
+        <route-files value="plymouth.rou.xml"/>
+        <!-- <additional-files value="plymouth_loops.add.xml"/> -->
+    </input>
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+    </time>
+    <report>
+        <verbose value="false"/>
+        <no-step-log value="true"/>
+         <output-prefix value='TIME'/>
+        <tripinfo-output value="tripInfo.xml"/>
+        <statistics-output value="statistics.xml"/>
+    </report>
+</configuration>

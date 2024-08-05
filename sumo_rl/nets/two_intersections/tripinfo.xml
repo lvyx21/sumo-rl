@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2024-07-18 19:43:43 by Eclipse SUMO GUI Version 1.20.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/home/lvyx/Documents/sumo-rl-main/sumo_rl/nets/two_intersections/two_intersections.net.xml"/>
+        <route-files value="/home/lvyx/Documents/sumo-rl-main/sumo_rl/nets/two_intersections/two_intersections.flow.rou.xml"/>
+    </input>
+
+    <output>
+        <tripinfo-output value="/home/lvyx/Documents/sumo-rl-main/sumo_rl/nets/two_intersections/tripinfo.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="100000"/>
+    </time>
+
+</configuration>
+-->
+
+<tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
+</tripinfos>

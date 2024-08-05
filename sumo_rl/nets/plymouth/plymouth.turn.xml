@@ -1,0 +1,45 @@
+<edgeRelations>
+    <interval begin="0" end="3600">
+        
+
+        <!-- nixon -->
+        <!-- Eastbound -->
+        <edgeRelation from="p11" to="p12" probability="0.7743"/>
+        <edgeRelation from="p11" to="4#3" probability="0.1930"/>
+        <edgeRelation from="p11" to="-4#2" probability="0.0327"/>
+        <!-- Northbound -->
+        <edgeRelation from="4#2" to="p12" probability="0.1897"/>
+        <edgeRelation from="4#2" to="4#3" probability="0.3621"/>
+        <edgeRelation from="4#2" to="-p11" probability="0.4482"/>
+        <!-- Southbound -->
+        <edgeRelation from="-4#3" to="-4#2" probability="0.0513"/>
+        <edgeRelation from="-4#3" to="-p11" probability="0.4231"/>
+        <edgeRelation from="-4#3" to="p12" probability="0.5256"/>
+        <!-- Westbound -->
+        <edgeRelation from="-p12" to="-p11" probability="0.8800"/>
+        <edgeRelation from="-p12" to="-4#2" probability="0.0157"/>
+        <edgeRelation from="-p12" to="4#3" probability="0.1043"/>
+
+        <!-- huron -->
+        <!-- Eastbound -->
+        <edgeRelation from="p14" to="-5#22" probability="0.1760"/>
+        <edgeRelation from="p14" to="p15" probability="0.8122"/>
+        <edgeRelation from="p14" to="5#3" probability="0.0118"/>
+        <!-- Westbound -->
+        <edgeRelation from="-p15" to="5#3" probability="0.13"/>
+        <edgeRelation from="-p15" to="-p14" probability="0.68"/>
+        <edgeRelation from="-p15" to="-5#22" probability="0.19"/>
+        <!-- Northbound -->
+        <edgeRelation from="5#2" to="5#3" probability="0.3434"/>
+        <edgeRelation from="5#2" to="p15" probability="0.3768"/>
+        <edgeRelation from="5#2" to="-p14" probability="0.2798"/>
+        <!-- Southbound -->
+        <edgeRelation from="-5#3" to="-5#22" probability="0.5255"/>
+        <edgeRelation from="-5#3" to="-p14" probability="0.0301"/>
+        <edgeRelation from="-5#3" to="p15" probability="0.4444"/>
+
+    </interval>
+    <turns>
+        <sink edges="-p10 p17 4#4 -4#1 5#4 -5#1"/>
+    </turns>
+</edgeRelations>
