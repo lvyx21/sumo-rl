@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2024-07-26 12:24:49 by Eclipse SUMO netedit Version 1.20.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="/home/wangzhi/Documents/plymouth_nixon_and_huron.net.xml"/>
+    </input>
+
+    <output>
+        <output-file value="/home/wangzhi/Documents/plymouth_nixon_and_huron.net.xml"/>
+        <output.street-names value="true"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="0"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.50"/>
+        <rectangular-lane-cut value="0"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="0"/>
+    </pedestrian>
+
+</configuration>
+-->
+
+<net version="1.20" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="-273927.66,-4684163.76" convBoundary="2521.27,2537.55,4113.56,2998.30" origBoundary="-83.742760,42.278475,-83.651009,42.325179" projParameter="+proj=utm +zone=17 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"/>
+
+    <type id="highway.secondary" priority="11" numLanes="1" speed="27.78" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.tertiary" priority="10" numLanes="1" speed="22.22" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+
+    <edge id=":J1_0" function="internal">
+        <lane id=":J1_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="8.80" shape="4009.17,2951.54 4011.67,2951.82 4013.47,2951.25 4015.28,2950.69 4017.76,2951.01"/>
+        <lane id=":J1_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="8.80" shape="4008.18,2954.58 4010.67,2954.86 4012.48,2954.29 4014.28,2953.73 4016.76,2954.05"/>
+    </edge>
+    <edge id=":huron_0" function="internal">
+        <lane id=":huron_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="8.04" length="14.43" shape="3176.14,2759.84 3170.95,2760.14 3167.24,2761.15 3165.01,2762.88 3164.26,2765.33"/>
+    </edge>
+    <edge id=":huron_1" function="internal">
+        <lane id=":huron_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="17.89" length="30.51" shape="3176.14,2759.84 3166.49,2759.25 3159.13,2758.11 3152.71,2757.00 3145.87,2756.52"/>
+        <lane id=":huron_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="17.89" length="30.51" shape="3176.18,2756.64 3166.52,2756.05 3159.14,2754.91 3152.71,2753.80 3145.86,2753.32"/>
+    </edge>
+    <edge id=":huron_3" function="internal">
+        <lane id=":huron_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.04" length="27.24" shape="3176.21,2753.44 3168.25,2752.40 3162.52,2749.48 3159.00,2744.67 3157.70,2737.98"/>
+    </edge>
+    <edge id=":huron_4" function="internal">
+        <lane id=":huron_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="7.57" length="12.25" shape="3170.50,2737.66 3170.95,2741.74 3172.06,2744.67 3173.83,2746.43 3176.27,2747.04"/>
+    </edge>
+    <edge id=":huron_5" function="internal">
+        <lane id=":huron_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.77" shape="3167.30,2737.74 3166.97,2746.50 3165.92,2752.99 3164.79,2758.75 3164.26,2765.33"/>
+        <lane id=":huron_5_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.77" shape="3164.10,2737.82 3163.77,2746.55 3162.72,2753.01 3161.59,2758.75 3161.06,2765.32"/>
+    </edge>
+    <edge id=":huron_7" function="internal">
+        <lane id=":huron_7_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="10.32" length="24.68" shape="3160.90,2737.90 3160.10,2744.62 3157.33,2749.44 3152.58,2752.33 3145.86,2753.32"/>
+    </edge>
+    <edge id=":huron_8" function="internal">
+        <lane id=":huron_8_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="7.26" length="11.70" shape="3145.83,2743.72 3149.67,2743.35 3152.40,2742.29 3154.01,2740.52 3154.50,2738.05"/>
+    </edge>
+    <edge id=":huron_9" function="internal">
+        <lane id=":huron_9_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="17.89" length="30.64" shape="3145.83,2743.72 3155.51,2744.20 3162.92,2745.32 3169.41,2746.47 3176.27,2747.04"/>
+        <lane id=":huron_9_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="17.89" length="30.64" shape="3145.84,2746.92 3155.51,2747.40 3162.91,2748.52 3169.38,2749.67 3176.24,2750.24"/>
+    </edge>
+    <edge id=":huron_11" function="internal">
+        <lane id=":huron_11_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="10.35" length="24.56" shape="3145.85,2750.12 3152.52,2751.05 3157.28,2753.89 3160.12,2758.65 3161.06,2765.32"/>
+    </edge>
+    <edge id=":huron_12" function="internal">
+        <lane id=":huron_12_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="7.31" length="11.72" shape="3151.46,2765.30 3151.12,2761.45 3150.07,2758.70 3148.32,2757.06 3145.87,2756.52"/>
+    </edge>
+    <edge id=":huron_13" function="internal">
+        <lane id=":huron_13_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.51" shape="3151.46,2765.30 3151.99,2756.67 3153.09,2750.29 3154.14,2744.60 3154.50,2738.05"/>
+        <lane id=":huron_13_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.51" shape="3154.66,2765.31 3155.19,2756.64 3156.29,2750.23 3157.34,2744.53 3157.70,2737.98"/>
+    </edge>
+    <edge id=":huron_15" function="internal">
+        <lane id=":huron_15_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="10.84" length="27.09" shape="3157.86,2765.32 3159.02,2758.65 3162.48,2753.92 3168.21,2751.11 3176.24,2750.24"/>
+    </edge>
+    <edge id=":huronN1_0" function="internal">
+        <lane id=":huronN1_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="7.83" shape="3164.18,2793.03 3164.17,2795.41 3164.11,2797.04 3163.98,2798.66 3163.72,2801.02"/>
+        <lane id=":huronN1_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="7.83" shape="3160.98,2793.02 3160.97,2795.30 3160.91,2796.85 3160.78,2798.40 3160.54,2800.66"/>
+    </edge>
+    <edge id=":huronN1_2" function="internal">
+        <lane id=":huronN1_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="7.87" shape="3154.18,2799.95 3153.91,2797.82 3152.93,2796.48 3151.87,2795.14 3151.38,2793.00"/>
+        <lane id=":huronN1_2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="7.87" shape="3157.36,2800.30 3157.10,2798.08 3156.13,2796.67 3155.07,2795.25 3154.58,2793.01"/>
+    </edge>
+    <edge id=":huronS1_0" function="internal">
+        <lane id=":huronS1_0_0" index="0" speed="13.89" length="8.00" shape="3152.30,2647.87 3152.10,2639.87"/>
+        <lane id=":huronS1_0_1" index="1" speed="13.89" length="8.00" shape="3155.50,2647.79 3155.30,2639.79"/>
+    </edge>
+    <edge id=":huronS2_0" function="internal">
+        <lane id=":huronS2_0_0" index="0" speed="13.89" length="8.00" shape="3151.01,2595.05 3150.81,2587.05"/>
+        <lane id=":huronS2_0_1" index="1" speed="13.89" length="8.00" shape="3154.21,2594.97 3154.01,2586.97"/>
+    </edge>
+    <edge id=":huronS2_2" function="internal">
+        <lane id=":huronS2_2_0" index="0" speed="13.89" length="8.81" shape="3160.41,2586.81 3160.97,2589.26 3162.11,2590.77 3163.25,2592.28 3163.81,2594.73"/>
+        <lane id=":huronS2_2_1" index="1" speed="13.89" length="8.81" shape="3157.21,2586.89 3157.77,2589.34 3158.91,2590.85 3160.05,2592.36 3160.61,2594.81"/>
+    </edge>
+    <edge id=":nixon_0" function="internal">
+        <lane id=":nixon_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="7.33" length="11.74" shape="2916.13,2766.21 2915.75,2762.35 2914.68,2759.60 2912.92,2757.96 2910.47,2757.42"/>
+    </edge>
+    <edge id=":nixon_1" function="internal">
+        <lane id=":nixon_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="14.77" length="27.47" shape="2916.13,2766.21 2916.30,2758.39 2916.69,2750.58 2916.91,2743.72 2916.60,2738.76"/>
+    </edge>
+    <edge id=":nixon_2" function="internal">
+        <lane id=":nixon_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="9.65" length="21.18" shape="2919.33,2766.18 2919.97,2759.52 2921.98,2754.76 2925.38,2751.89 2930.15,2750.92"/>
+    </edge>
+    <edge id=":nixon_3" function="internal">
+        <lane id=":nixon_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="7.04" length="10.78" shape="2930.20,2760.52 2926.83,2760.88 2924.43,2761.94 2923.00,2763.70 2922.53,2766.16"/>
+    </edge>
+    <edge id=":nixon_4" function="internal">
+        <lane id=":nixon_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="20.06" shape="2930.20,2760.52 2924.31,2760.04 2920.33,2758.96 2916.36,2757.89 2910.47,2757.42"/>
+        <lane id=":nixon_4_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="20.06" shape="2930.18,2757.32 2924.29,2756.84 2920.32,2755.76 2916.34,2754.69 2910.45,2754.22"/>
+    </edge>
+    <edge id=":nixon_6" function="internal">
+        <lane id=":nixon_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="10.66" length="22.39" shape="2930.17,2754.12 2925.32,2753.18 2921.45,2750.30 2918.54,2745.50 2916.60,2738.76"/>
+    </edge>
+    <edge id=":nixon_7" function="internal">
+        <lane id=":nixon_7_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="8.37" length="13.45" shape="2922.89,2737.58 2924.06,2742.02 2925.66,2745.19 2927.69,2747.09 2930.14,2747.72"/>
+    </edge>
+    <edge id=":nixon_8" function="internal">
+        <lane id=":nixon_8_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="14.77" length="28.64" shape="2922.89,2737.58 2923.61,2745.49 2923.39,2753.68 2922.83,2760.96 2922.53,2766.16"/>
+    </edge>
+    <edge id=":nixon_9" function="internal">
+        <lane id=":nixon_9_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="9.25" length="21.96" shape="2919.75,2738.17 2920.29,2745.17 2918.93,2750.17 2915.65,2753.19 2910.45,2754.22"/>
+    </edge>
+    <edge id=":nixon_10" function="internal">
+        <lane id=":nixon_10_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="6.47" length="10.15" shape="2910.39,2744.62 2913.52,2744.24 2915.60,2743.14 2916.63,2741.31 2916.60,2738.76"/>
+    </edge>
+    <edge id=":nixon_11" function="internal">
+        <lane id=":nixon_11_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="20.07" shape="2910.39,2744.62 2916.29,2745.09 2920.26,2746.16 2924.24,2747.24 2930.14,2747.72"/>
+        <lane id=":nixon_11_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="20.07" shape="2910.41,2747.82 2916.31,2748.29 2920.28,2749.36 2924.26,2750.44 2930.15,2750.92"/>
+    </edge>
+    <edge id=":nixon_13" function="internal">
+        <lane id=":nixon_13_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="9.85" length="22.00" shape="2910.43,2751.02 2915.68,2751.94 2919.45,2754.77 2921.73,2759.51 2922.53,2766.16"/>
+    </edge>
+    <edge id=":nixonN1_0" function="internal">
+        <lane id=":nixonN1_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="8.40" shape="2919.59,2801.32 2919.07,2798.86 2917.96,2797.33 2916.85,2795.80 2916.33,2793.35"/>
+        <lane id=":nixonN1_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="8.40" shape="2919.59,2801.32 2919.53,2793.32"/>
+    </edge>
+    <edge id=":nixonN1_2" function="internal">
+        <lane id=":nixonN1_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="8.00" shape="2922.73,2793.30 2922.79,2801.30"/>
+    </edge>
+    <edge id=":nixonS1_0" function="internal">
+        <lane id=":nixonS1_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.64" shape="2914.02,2725.07 2913.51,2722.57 2912.98,2720.88 2912.12,2719.34 2910.64,2717.26"/>
+    </edge>
+    <edge id=":nixonS1_1" function="internal">
+        <lane id=":nixonS1_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="10.71" shape="2913.23,2715.37 2915.43,2717.64 2917.49,2719.10 2919.19,2720.83 2920.31,2723.88"/>
+        <lane id=":nixonS1_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="10.71" shape="2913.23,2715.37 2914.95,2717.80 2915.95,2719.60 2916.58,2721.56 2917.17,2724.47"/>
+    </edge>
+    <edge id=":plymouth16_0" function="internal">
+        <lane id=":plymouth16_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.00" shape="2856.02,2757.79 2848.02,2757.85"/>
+        <lane id=":plymouth16_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.00" shape="2856.00,2754.59 2848.00,2754.65"/>
+    </edge>
+    <edge id=":plymouth16_2" function="internal">
+        <lane id=":plymouth16_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.81" shape="2847.96,2748.25 2850.42,2747.73 2851.95,2746.62 2853.48,2745.51 2855.94,2744.99"/>
+        <lane id=":plymouth16_2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.81" shape="2847.98,2751.45 2850.44,2750.93 2851.97,2749.82 2853.50,2748.71 2855.96,2748.19"/>
+    </edge>
+    <edge id=":plymouth18_0" function="internal">
+        <lane id=":plymouth18_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.81" shape="2982.97,2757.12 2980.51,2757.63 2978.97,2758.74 2977.44,2759.85 2974.98,2760.35"/>
+        <lane id=":plymouth18_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.81" shape="2982.96,2753.92 2980.50,2754.43 2978.96,2755.54 2977.43,2756.65 2974.97,2757.15"/>
+    </edge>
+    <edge id=":plymouth18_2" function="internal">
+        <lane id=":plymouth18_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.00" shape="2974.93,2747.55 2982.93,2747.52"/>
+        <lane id=":plymouth18_2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.00" shape="2974.94,2750.75 2982.94,2750.72"/>
+    </edge>
+    <edge id=":plymouth19_0" function="internal">
+        <lane id=":plymouth19_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.00" shape="3104.17,2756.67 3096.17,2756.70"/>
+        <lane id=":plymouth19_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.00" shape="3104.16,2753.47 3096.15,2753.50"/>
+    </edge>
+    <edge id=":plymouth19_2" function="internal">
+        <lane id=":plymouth19_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.80" shape="3096.13,2747.10 3098.59,2746.60 3100.13,2745.49 3101.66,2744.38 3104.12,2743.87"/>
+        <lane id=":plymouth19_2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="8.80" shape="3096.14,2750.30 3098.60,2749.80 3100.14,2748.69 3101.67,2747.58 3104.13,2747.07"/>
+    </edge>
+    <edge id=":plymouth21_0" function="internal">
+        <lane id=":plymouth21_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="8.42" shape="3344.32,2758.22 3341.99,2758.56 3340.52,2759.58 3339.06,2760.65 3336.72,2761.13"/>
+        <lane id=":plymouth21_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="8.42" shape="3344.53,2755.02 3342.15,2755.36 3340.64,2756.38 3339.13,2757.45 3336.75,2757.93"/>
+    </edge>
+    <edge id=":plymouth21_2" function="internal">
+        <lane id=":plymouth21_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="8.06" shape="3336.81,2748.33 3344.96,2748.64"/>
+        <lane id=":plymouth21_2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="8.06" shape="3336.79,2751.53 3344.75,2751.83"/>
+    </edge>
+
+    <edge id="-4#1" from="nixonS1" to="nixonS2" priority="10" type="highway.tertiary" shape="2914.72,2720.13 2908.29,2711.32 2896.84,2705.89 2868.20,2699.34 2850.12,2693.28 2838.44,2685.40 2827.96,2673.09 2824.29,2655.32 2825.31,2637.80 2832.41,2623.33 2842.46,2611.24 2853.55,2601.64 2880.28,2591.64 2907.70,2589.88">
+        <lane id="-4#1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="239.23" shape="2910.64,2717.26 2907.24,2712.59 2896.31,2707.41 2867.77,2700.88 2849.41,2694.73 2837.36,2686.60 2826.48,2673.82 2822.68,2655.44 2823.73,2637.38 2831.06,2622.45 2841.31,2610.12 2852.72,2600.24 2879.94,2590.06 2907.60,2588.28"/>
+    </edge>
+    <edge id="-4#2" from="nixon" to="nixonS1" priority="10" type="highway.tertiary">
+        <lane id="-4#2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="13.94" shape="2916.60,2738.76 2914.02,2725.07"/>
+    </edge>
+    <edge id="-4#3" from="nixonN1" to="nixon" name="Nixon Road" priority="10" type="highway.tertiary" shape="2921.16,2797.31 2920.94,2767.16 2920.83,2752.56">
+        <lane id="-4#3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.14" shape="2916.33,2793.35 2916.14,2767.20 2916.13,2766.21">
+            <param key="origId" value="441190742"/>
+        </lane>
+        <lane id="-4#3_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.14" shape="2919.53,2793.32 2919.34,2767.17 2919.33,2766.18">
+            <param key="origId" value="441190742"/>
+        </lane>
+    </edge>
+    <edge id="-4#4" from="nixonN3" to="nixonN1" name="Nixon Road" priority="10" type="highway.tertiary" shape="2919.32,2998.30 2920.94,2990.90 2922.51,2979.16 2922.27,2946.92 2921.95,2910.20 2921.72,2872.42 2921.33,2820.81 2921.16,2797.31">
+        <lane id="-4#4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="196.92" shape="2917.76,2997.96 2919.36,2990.62 2920.91,2979.06 2920.67,2946.93 2920.35,2910.21 2920.12,2872.43 2919.73,2820.82 2919.59,2801.32">
+            <param key="origId" value="1162299121 441190744"/>
+        </lane>
+    </edge>
+    <edge id="-5#1" from="huronS2" to="huronS3" priority="-1">
+        <lane id="-5#1_0" index="0" speed="13.89" length="49.40" shape="3150.81,2587.05 3149.60,2537.67"/>
+        <lane id="-5#1_1" index="1" speed="13.89" length="49.40" shape="3154.01,2586.97 3152.80,2537.59"/>
+    </edge>
+    <edge id="-5#21" from="huronS1" to="huronS2" priority="-1">
+        <lane id="-5#21_0" index="0" speed="13.89" length="44.84" shape="3148.90,2639.95 3147.81,2595.12"/>
+        <lane id="-5#21_1" index="1" speed="13.89" length="44.84" shape="3152.10,2639.87 3151.01,2595.05"/>
+        <lane id="-5#21_2" index="2" speed="13.89" length="44.84" shape="3155.30,2639.79 3154.21,2594.97"/>
+    </edge>
+    <edge id="-5#22" from="huron" to="huronS1" priority="-1">
+        <lane id="-5#22_0" index="0" speed="13.89" length="90.21" shape="3154.50,2738.05 3152.30,2647.87"/>
+        <lane id="-5#22_1" index="1" speed="13.89" length="90.21" shape="3157.70,2737.98 3155.50,2647.79"/>
+    </edge>
+    <edge id="-5#3" from="huronN1" to="huron" name="Huron Parkway" priority="10" type="highway.tertiary" shape="3159.37,2796.72 3159.38,2792.93 3159.46,2764.90 3159.49,2751.67">
+        <lane id="-5#3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.70" shape="3151.38,2793.00 3151.46,2765.30">
+            <param key="origId" value="142178743"/>
+        </lane>
+        <lane id="-5#3_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.70" shape="3154.58,2793.01 3154.66,2765.31">
+            <param key="origId" value="142178743"/>
+        </lane>
+        <lane id="-5#3_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.70" shape="3157.78,2793.02 3157.86,2765.32">
+            <param key="origId" value="142178743"/>
+        </lane>
+        <param key="origTo" value="62500824"/>
+    </edge>
+    <edge id="-5#4" from="huronN2" to="huronN1" name="Huron Parkway" priority="10" type="highway.tertiary" shape="3064.16,2957.28 3078.95,2944.22 3112.54,2910.92 3125.46,2893.86 3136.31,2879.56 3146.91,2854.31 3151.74,2841.62 3156.75,2819.96 3157.64,2812.07 3159.37,2796.72">
+        <lane id="-5#4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="186.82" shape="3060.98,2953.68 3075.67,2940.71 3108.92,2907.75 3121.63,2890.96 3132.12,2877.14 3142.45,2852.53 3147.14,2840.22 3152.01,2819.15 3152.87,2811.53 3154.18,2799.95">
+            <param key="origId" value="441190721 1162299113"/>
+        </lane>
+        <lane id="-5#4_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="186.82" shape="3063.10,2956.08 3077.86,2943.05 3111.33,2909.86 3124.18,2892.89 3134.91,2878.75 3145.42,2853.72 3150.21,2841.15 3155.17,2819.69 3156.05,2811.89 3157.36,2800.30">
+            <param key="origId" value="441190721 1162299113"/>
+        </lane>
+    </edge>
+    <edge id="-p10" from="plymouth16" to="traverWood" name="Plymouth Road" priority="11" type="highway.secondary" shape="2851.99,2753.02 2777.88,2753.54 2722.80,2753.91 2718.24,2753.95 2693.55,2753.51 2655.49,2752.83 2624.19,2749.27 2598.14,2744.99 2553.00,2731.87 2531.02,2722.26 2521.27,2718.00">
+        <lane id="-p10_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="333.39" shape="2848.02,2757.85 2777.91,2758.34 2722.83,2758.71 2718.22,2758.75 2693.46,2758.31 2655.18,2757.63 2623.53,2754.03 2597.08,2749.68 2551.36,2736.39 2529.10,2726.66 2519.35,2722.40">
+            <param key="origId" value="441190747"/>
+        </lane>
+        <lane id="-p10_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="333.39" shape="2848.00,2754.65 2777.89,2755.14 2722.81,2755.51 2718.23,2755.55 2693.52,2755.11 2655.39,2754.43 2623.97,2750.86 2597.79,2746.55 2552.45,2733.38 2530.38,2723.73 2520.63,2719.47">
+            <param key="origId" value="441190747"/>
+        </lane>
+    </edge>
+    <edge id="-p11" from="nixon" to="plymouth16" name="Plymouth Road" priority="11" type="highway.secondary" shape="2920.83,2752.56 2909.38,2752.63 2851.99,2753.02">
+        <lane id="-p11_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="54.45" shape="2910.47,2757.42 2909.41,2757.43 2856.02,2757.79">
+            <param key="origId" value="897491919"/>
+        </lane>
+        <lane id="-p11_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="54.45" shape="2910.45,2754.22 2909.39,2754.23 2856.00,2754.59">
+            <param key="origId" value="897491919"/>
+        </lane>
+    </edge>
+    <edge id="-p12" from="plymouth18" to="nixon" name="Plymouth Road" priority="11" type="highway.secondary" shape="2978.95,2752.34 2931.64,2752.51 2920.83,2752.56">
+        <lane id="-p12_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="44.78" shape="2974.98,2760.35 2931.67,2760.51 2930.20,2760.52">
+            <param key="origId" value="897491920 897491918"/>
+        </lane>
+        <lane id="-p12_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="44.78" shape="2974.97,2757.15 2931.66,2757.31 2930.18,2757.32">
+            <param key="origId" value="897491920 897491918"/>
+        </lane>
+        <lane id="-p12_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="44.78" shape="2974.96,2753.95 2931.65,2754.11 2930.17,2754.12">
+            <param key="origId" value="897491920 897491918"/>
+        </lane>
+    </edge>
+    <edge id="-p13" from="plymouth19" to="plymouth18" name="Plymouth Road" priority="11" type="highway.secondary" shape="3100.15,2751.89 3087.97,2751.93 2994.38,2752.28 2978.95,2752.34">
+        <lane id="-p13_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="113.20" shape="3096.17,2756.70 3087.99,2756.73 2994.40,2757.08 2982.97,2757.12">
+            <param key="origId" value="897491920 897491918"/>
+        </lane>
+        <lane id="-p13_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="113.20" shape="3096.15,2753.50 3087.98,2753.53 2994.39,2753.88 2982.96,2753.92">
+            <param key="origId" value="897491920 897491918"/>
+        </lane>
+    </edge>
+    <edge id="-p14" from="huron" to="plymouth19" name="Plymouth Road" priority="11" type="highway.secondary" shape="3159.49,2751.67 3141.44,2751.73 3107.60,2751.86 3100.15,2751.89">
+        <lane id="-p14_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="41.70" shape="3145.87,2756.52 3141.46,2756.53 3107.62,2756.66 3104.17,2756.67">
+            <param key="origId" value="412646493"/>
+        </lane>
+        <lane id="-p14_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="41.70" shape="3145.86,2753.32 3141.45,2753.33 3107.61,2753.46 3104.16,2753.47">
+            <param key="origId" value="412646493"/>
+        </lane>
+        <param key="origFrom" value="62500824"/>
+    </edge>
+    <edge id="-p15" from="plymouth21" to="huron" name="Plymouth Road" priority="11" type="highway.secondary" shape="3340.69,2753.16 3256.68,2752.57 3237.81,2752.43 3231.75,2752.39 3175.37,2751.83 3159.49,2751.67">
+        <lane id="-p15_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="160.58" shape="3336.72,2761.13 3256.62,2760.57 3237.75,2760.43 3231.68,2760.39 3176.14,2759.84">
+            <param key="origId" value="441190750 222786843"/>
+        </lane>
+        <lane id="-p15_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="160.58" shape="3336.75,2757.93 3256.65,2757.37 3237.78,2757.23 3231.71,2757.19 3176.18,2756.64">
+            <param key="origId" value="441190750 222786843"/>
+        </lane>
+        <lane id="-p15_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="160.58" shape="3336.77,2754.73 3256.67,2754.17 3237.80,2754.03 3231.74,2753.99 3176.21,2753.44">
+            <param key="origId" value="441190750 222786843"/>
+        </lane>
+        <param key="origTo" value="62500824"/>
+    </edge>
+    <edge id="-p17" from="green" to="plymouth21" name="Plymouth Road" priority="11" type="highway.secondary" shape="4113.56,2992.10 4098.15,2986.91 4062.87,2975.04 4013.31,2957.94 3972.43,2944.63 3956.26,2939.18 3810.04,2890.00 3730.67,2863.31 3724.29,2861.09 3712.42,2857.11 3709.38,2856.09 3702.70,2853.87 3694.43,2851.12 3677.55,2845.44 3593.93,2817.19 3584.52,2814.01 3494.84,2783.71 3460.97,2772.66 3455.77,2770.96 3412.06,2759.89 3383.22,2756.03 3340.69,2753.16">
+        <lane id="-p17_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="806.01" shape="4112.03,2996.65 4096.62,2991.46 4061.32,2979.58 4011.78,2962.49 3970.92,2949.19 3954.73,2943.73 3808.51,2894.55 3729.14,2867.86 3722.74,2865.63 3710.89,2861.66 3707.86,2860.64 3701.19,2858.42 3692.90,2855.67 3676.02,2849.99 3592.39,2821.74 3582.98,2818.56 3493.33,2788.27 3459.48,2777.22 3454.43,2775.57 3411.15,2764.61 3382.74,2760.81 3344.32,2758.22">
+            <param key="origId" value="411672987"/>
+        </lane>
+        <lane id="-p17_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="806.01" shape="4113.05,2993.62 4097.64,2988.43 4062.35,2976.55 4012.80,2959.46 3971.93,2946.15 3955.75,2940.70 3809.53,2891.52 3730.16,2864.83 3723.77,2862.60 3711.91,2858.63 3708.87,2857.61 3702.20,2855.39 3693.92,2852.64 3677.04,2846.96 3593.42,2818.71 3584.01,2815.53 3494.34,2785.23 3460.47,2774.18 3455.32,2772.50 3411.76,2761.46 3383.06,2757.62 3344.53,2755.02">
+            <param key="origId" value="411672987"/>
+        </lane>
+    </edge>
+    <edge id="4#1" from="nixonS2" to="nixonS1" priority="10" type="highway.tertiary" shape="2907.70,2589.88 2880.28,2591.64 2853.55,2601.64 2842.46,2611.24 2832.41,2623.33 2825.31,2637.80 2824.29,2655.32 2827.96,2673.09 2838.44,2685.40 2850.12,2693.28 2868.20,2699.34 2896.84,2705.89 2908.29,2711.32 2914.72,2720.13">
+        <lane id="4#1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="232.33" shape="2907.80,2591.48 2880.62,2593.22 2854.38,2603.04 2843.61,2612.36 2833.76,2624.21 2826.89,2638.22 2825.90,2655.20 2829.44,2672.36 2839.52,2684.20 2850.83,2691.83 2868.63,2697.80 2897.37,2704.37 2909.34,2710.05 2913.23,2715.37"/>
+    </edge>
+    <edge id="4#2" from="nixonS1" to="nixon" priority="10" type="highway.tertiary">
+        <lane id="4#2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="13.94" shape="2920.31,2723.88 2922.89,2737.58"/>
+        <lane id="4#2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="13.94" shape="2917.17,2724.47 2919.75,2738.17"/>
+    </edge>
+    <edge id="4#3" from="nixon" to="nixonN1" name="Nixon Road" priority="10" type="highway.tertiary" shape="2920.83,2752.56 2920.94,2767.16 2921.16,2797.31">
+        <lane id="4#3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.14" shape="2922.53,2766.16 2922.54,2767.15 2922.73,2793.30">
+            <param key="origId" value="441190742"/>
+        </lane>
+    </edge>
+    <edge id="4#4" from="nixonN1" to="nixonN3" name="Nixon Road" priority="10" type="highway.tertiary" shape="2921.16,2797.31 2921.33,2820.81 2921.72,2872.42 2921.95,2910.20 2922.27,2946.92 2922.51,2979.16 2920.94,2990.90 2919.32,2998.30">
+        <lane id="4#4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="197.63" shape="2922.79,2801.30 2922.93,2820.80 2923.32,2872.41 2923.55,2910.19 2923.87,2946.91 2924.11,2979.26 2922.52,2991.18 2920.88,2998.64">
+            <param key="origId" value="8731162"/>
+        </lane>
+    </edge>
+    <edge id="5#1" from="huronS3" to="huronS2" priority="-1">
+        <lane id="5#1_0" index="0" speed="13.89" length="49.40" shape="3159.20,2537.43 3160.41,2586.81"/>
+        <lane id="5#1_1" index="1" speed="13.89" length="49.40" shape="3156.00,2537.51 3157.21,2586.89"/>
+    </edge>
+    <edge id="5#2" from="huronS2" to="huron" priority="-1">
+        <lane id="5#2_0" index="0" speed="13.89" length="143.05" shape="3167.00,2594.66 3170.50,2737.66"/>
+        <lane id="5#2_1" index="1" speed="13.89" length="143.05" shape="3163.81,2594.73 3167.30,2737.74"/>
+        <lane id="5#2_2" index="2" speed="13.89" length="143.05" shape="3160.61,2594.81 3164.10,2737.82"/>
+        <lane id="5#2_3" index="3" speed="13.89" length="143.05" shape="3157.41,2594.89 3160.90,2737.90"/>
+    </edge>
+    <edge id="5#3" from="huron" to="huronN1" name="Huron Parkway" priority="10" type="highway.tertiary" shape="3159.49,2751.67 3159.46,2764.90 3159.38,2792.93 3159.37,2796.72">
+        <lane id="5#3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.70" shape="3164.26,2765.33 3164.18,2793.03">
+            <param key="origId" value="142178743"/>
+        </lane>
+        <lane id="5#3_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="27.70" shape="3161.06,2765.32 3160.98,2793.02">
+            <param key="origId" value="142178743"/>
+        </lane>
+        <param key="origFrom" value="62500824"/>
+    </edge>
+    <edge id="5#4" from="huronN1" to="huronN2" name="Huron Parkway" priority="10" type="highway.tertiary" shape="3159.37,2796.72 3157.64,2812.07 3156.75,2819.96 3151.74,2841.62 3146.91,2854.31 3136.31,2879.56 3125.46,2893.86 3112.54,2910.92 3078.95,2944.22 3064.16,2957.28">
+        <lane id="5#4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="191.53" shape="3163.72,2801.02 3162.41,2812.61 3161.49,2820.77 3156.34,2843.02 3151.37,2856.09 3140.50,2881.98 3129.29,2896.76 3116.16,2914.09 3082.23,2947.73 3067.34,2960.88">
+            <param key="origId" value="1162299113 441190721"/>
+        </lane>
+        <lane id="5#4_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="191.53" shape="3160.54,2800.66 3159.23,2812.25 3158.33,2820.23 3153.27,2842.09 3148.40,2854.90 3137.71,2880.37 3126.74,2894.83 3113.75,2911.98 3080.04,2945.39 3065.22,2958.48">
+            <param key="origId" value="1162299113 441190721"/>
+        </lane>
+    </edge>
+    <edge id="p10" from="traverWood" to="plymouth16" name="Plymouth Road" priority="11" type="highway.secondary" shape="2521.27,2718.00 2531.02,2722.26 2553.00,2731.87 2598.14,2744.99 2624.19,2749.27 2655.49,2752.83 2693.55,2753.51 2718.24,2753.95 2722.80,2753.91 2777.88,2753.54 2851.99,2753.02">
+        <lane id="p10_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="330.71" shape="2523.19,2713.60 2532.94,2717.86 2554.64,2727.35 2599.20,2740.30 2624.85,2744.51 2655.80,2748.03 2693.64,2748.71 2718.26,2749.15 2722.76,2749.11 2777.85,2748.74 2847.96,2748.25">
+            <param key="origId" value="441190747"/>
+        </lane>
+        <lane id="p10_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="330.71" shape="2521.91,2716.53 2531.66,2720.79 2553.55,2730.36 2598.49,2743.43 2624.41,2747.68 2655.59,2751.23 2693.58,2751.91 2718.25,2752.35 2722.79,2752.31 2777.87,2751.94 2847.98,2751.45">
+            <param key="origId" value="441190747"/>
+        </lane>
+    </edge>
+    <edge id="p11" from="plymouth16" to="nixon" name="Plymouth Road" priority="11" type="highway.secondary" shape="2851.99,2753.02 2909.38,2752.63 2920.83,2752.56">
+        <lane id="p11_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="54.45" shape="2855.94,2744.99 2909.33,2744.63 2910.39,2744.62">
+            <param key="origId" value="897491919"/>
+        </lane>
+        <lane id="p11_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="54.45" shape="2855.96,2748.19 2909.35,2747.83 2910.41,2747.82">
+            <param key="origId" value="897491919"/>
+        </lane>
+        <lane id="p11_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="54.45" shape="2855.98,2751.39 2909.37,2751.03 2910.43,2751.02">
+            <param key="origId" value="897491919"/>
+        </lane>
+    </edge>
+    <edge id="p12" from="nixon" to="plymouth18" name="Plymouth Road" priority="11" type="highway.secondary" shape="2920.83,2752.56 2931.64,2752.51 2978.95,2752.34">
+        <lane id="p12_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="44.79" shape="2930.14,2747.72 2931.62,2747.71 2974.93,2747.55">
+            <param key="origId" value="897491918 897491920"/>
+        </lane>
+        <lane id="p12_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="44.79" shape="2930.15,2750.92 2931.63,2750.91 2974.94,2750.75">
+            <param key="origId" value="897491918 897491920"/>
+        </lane>
+    </edge>
+    <edge id="p13" from="plymouth18" to="plymouth19" name="Plymouth Road" priority="11" type="highway.secondary" shape="2978.95,2752.34 2994.38,2752.28 3087.97,2751.93 3100.15,2751.89">
+        <lane id="p13_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="113.20" shape="2982.93,2747.52 2994.36,2747.48 3087.95,2747.13 3096.13,2747.10">
+            <param key="origId" value="897491918 897491920"/>
+        </lane>
+        <lane id="p13_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="113.20" shape="2982.94,2750.72 2994.37,2750.68 3087.96,2750.33 3096.14,2750.30">
+            <param key="origId" value="897491918 897491920"/>
+        </lane>
+    </edge>
+    <edge id="p14" from="plymouth19" to="huron" name="Plymouth Road" priority="11" type="highway.secondary" shape="3100.15,2751.89 3107.60,2751.86 3141.44,2751.73 3159.49,2751.67">
+        <lane id="p14_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="41.71" shape="3104.12,2743.87 3107.57,2743.86 3141.41,2743.73 3145.83,2743.72">
+            <param key="origId" value="412646493"/>
+        </lane>
+        <lane id="p14_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="41.71" shape="3104.13,2747.07 3107.58,2747.06 3141.42,2746.93 3145.84,2746.92">
+            <param key="origId" value="412646493"/>
+        </lane>
+        <lane id="p14_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.65" length="41.71" shape="3104.14,2750.27 3107.59,2750.26 3141.43,2750.13 3145.85,2750.12">
+            <param key="origId" value="412646493"/>
+        </lane>
+        <param key="origTo" value="62500824"/>
+    </edge>
+    <edge id="p15" from="huron" to="plymouth21" name="Plymouth Road" priority="11" type="highway.secondary" shape="3159.49,2751.67 3175.37,2751.83 3231.75,2752.39 3237.81,2752.43 3256.68,2752.57 3340.69,2753.16">
+        <lane id="p15_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="160.55" shape="3176.27,2747.04 3231.80,2747.59 3237.84,2747.63 3256.71,2747.77 3336.81,2748.33">
+            <param key="origId" value="222786843 441190750"/>
+        </lane>
+        <lane id="p15_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="160.55" shape="3176.24,2750.24 3231.77,2750.79 3237.82,2750.83 3256.69,2750.97 3336.79,2751.53">
+            <param key="origId" value="222786843 441190750"/>
+        </lane>
+        <param key="origFrom" value="62500824"/>
+    </edge>
+    <edge id="p16" from="plymouth21" to="J1" name="Plymouth Road" priority="11" type="highway.secondary" shape="3340.69,2753.16 3383.22,2756.03 3412.06,2759.89 3455.77,2770.96 3460.97,2772.66 3494.84,2783.71 3584.52,2814.01 3593.93,2817.19 3677.55,2845.44 3694.43,2851.12 3702.70,2853.87 3709.38,2856.09 3712.42,2857.11 3724.29,2861.09 3730.67,2863.31 3810.04,2890.00 3956.26,2939.18 3972.43,2944.63 4011.48,2957.34">
+        <lane id="p16_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="695.79" shape="3344.96,2748.64 3383.70,2751.25 3412.97,2755.17 3457.11,2766.35 3462.46,2768.10 3496.35,2779.15 3586.06,2809.46 3595.47,2812.64 3679.09,2840.89 3695.96,2846.57 3704.21,2849.32 3710.90,2851.54 3713.95,2852.56 3725.83,2856.55 3732.22,2858.77 3811.57,2885.45 3957.79,2934.63 3973.94,2940.07 4009.17,2951.54">
+            <param key="origId" value="441190750"/>
+        </lane>
+        <lane id="p16_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="695.79" shape="3344.75,2751.83 3383.38,2754.44 3412.36,2758.32 3456.22,2769.42 3461.47,2771.14 3495.34,2782.19 3585.03,2812.49 3594.44,2815.67 3678.06,2843.92 3694.94,2849.60 3703.20,2852.35 3709.89,2854.57 3712.93,2855.59 3724.80,2859.58 3731.19,2861.80 3810.55,2888.48 3956.77,2937.66 3972.93,2943.11 4008.18,2954.58">
+            <param key="origId" value="441190750"/>
+        </lane>
+        <param key="origTo" value="3705291558"/>
+    </edge>
+    <edge id="p17" from="J1" to="green" name="Plymouth Road" priority="11" type="highway.secondary" shape="4011.48,2957.34 4013.31,2957.94 4062.87,2975.04 4098.15,2986.91 4113.56,2992.10">
+        <lane id="p17_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="103.89" shape="4018.76,2947.97 4066.48,2964.44 4101.72,2976.30 4117.13,2981.49">
+            <param key="origId" value="441190750"/>
+        </lane>
+        <lane id="p17_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="103.89" shape="4017.76,2951.01 4065.45,2967.47 4100.70,2979.33 4116.11,2984.52">
+            <param key="origId" value="441190750"/>
+        </lane>
+        <lane id="p17_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="103.89" shape="4016.76,2954.05 4064.42,2970.50 4099.68,2982.36 4115.09,2987.55">
+            <param key="origId" value="441190750"/>
+        </lane>
+        <lane id="p17_3" index="3" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="20.12" length="103.89" shape="4015.77,2957.09 4063.39,2973.53 4098.66,2985.39 4114.07,2990.58">
+            <param key="origId" value="441190750"/>
+        </lane>
+        <param key="origTo" value="3705291558"/>
+    </edge>
+
+ <!--   <tlLogic id="TLS_huron" type="static" programID="1" offset="0">
+        <phase duration="5"  state="srrGsrrrsrrGsrrr"/>
+        <phase duration="3"  state="srrGsrrrsrrysrrr"/>
+        <phase duration="1"  state="srrGsrrrsrrrsrrr"/>
+        <phase duration="2"  state="GGGGsrrrsrrrsrrr"/>
+        <phase duration="3"  state="GGGysrrrsrrrsrrr"/>
+        <phase duration="1"  state="GGGrsrrrsrrrsrrr"/>
+        <phase duration="25" state="GGGrsrrrGGGrsrrr"/>
+        <phase duration="3"  state="yyyrsrrryyyrsrrr"/>
+        <phase duration="1"  state="srrrsrrrsrrrsrrr"/>
+        <phase duration="11" state="srrrsrrGsrrrsrrG"/>
+        <phase duration="2"  state="srrrsrrGsrrrsrry"/>
+        <phase duration="1"  state="srrrsrrysrrrsrry"/>
+        <phase duration="1"  state="srrrsrrysrrrsrrr"/>
+        <phase duration="1"  state="srrrGGGysrrrsrrr"/>
+        <phase duration="1"  state="srrrGGGrsrrrsrrr"/>
+        <phase duration="20" state="srrrGGGrsrrrGGGr"/>
+        <phase duration="3"  state="srrryyyrsrrryyyr"/>
+        <phase duration="1"  state="srrrsrrrsrrrsrrr"/>
+    </tlLogic>
+    <tlLogic id="TLS_nixon" type="static" programID="1" offset="23.0">
+        <phase duration="5"  state="srrsrrGsrrsrrG"/>
+        <phase duration="3"  state="srrsrrysrrsrrG"/>
+        <phase duration="1"  state="srrsrrrsrrsrrG"/>
+        <phase duration="3"  state="srrsrrrsrrGGGG"/>
+        <phase duration="3"  state="srrsrrrsrrGGGy"/>
+        <phase duration="1"  state="srrsrrrsrrGGGr"/>
+        <phase duration="25" state="srrGGGrsrrGGGr"/>
+        <phase duration="3"  state="srryyyrsrryyyr"/>
+        <phase duration="1"  state="srrsrrrsrrsrrr"/>
+        <phase duration="9"  state="srGsrrrsrGsrrr"/>
+        <phase duration="3"  state="srGsrrrsrysrrr"/>
+        <phase duration="1"  state="srysrrrsrrsrrr"/>
+        <phase duration="2"  state="GGysrrrsrrsrrr"/>
+        <phase duration="1"  state="GGrsrrrsrrsrrr"/>
+        <phase duration="20" state="GGrsrrrGGrsrrr"/>
+        <phase duration="3"  state="yyrsrrryyrsrrr"/>
+        <phase duration="1"  state="srrsrrrsrrsrrr"/>
+    </tlLogic>-->
+    <tlLogic id="TLS_huron" type="static" programID="1" offset="0">
+        <phase duration="7"  state="srrGsrrrsrrGsrrr"/>
+        <phase duration="3"  state="GGGGsrrrsrrrsrrr"/>
+        <phase duration="25" state="GGGrsrrrGGGrsrrr"/>
+        <phase duration="3"  state="yyyrsrrryyyrsrrr"/>
+        <phase duration="12" state="srrrsrrGsrrrsrrG"/>
+        <phase duration="22" state="srrrGGGrsrrrGGGr"/>
+    </tlLogic>
+    <tlLogic id="TLS_nixon" type="static" programID="1" offset="23.0">
+        <phase duration="8"  state="srrsrrGsrrsrrG"/>
+        <phase duration="6"  state="srrsrrrsrrGGGG"/>
+        <phase duration="25" state="srrGGGrsrrGGGr"/>
+        <phase duration="3"  state="srryyyrsrryyyr"/>
+        <phase duration="10" state="srGsrrrsrGsrrr"/>
+        <phase duration="22" state="GGrsrrrGGrsrrr"/>
+    </tlLogic>
+
+    <junction id="J1" type="priority" x="4011.48" y="2957.34" incLanes="p16_0 p16_1" intLanes=":J1_0_0 :J1_0_1" shape="4015.27,2958.62 4019.26,2946.45 4017.20,2946.25 4015.70,2946.99 4014.47,2948.20 4013.24,2949.43 4011.73,2950.19 4009.66,2950.02 4007.68,2956.10">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="green" type="dead_end" x="4113.56" y="2992.10" incLanes="p17_0 p17_1 p17_2 p17_3" intLanes="" shape="4113.56,2992.10 4117.65,2979.97 4113.56,2992.10"/>
+    <junction id="huron" type="traffic_light" x="3159.53" y="2747.26" incLanes="-p15_0 -p15_1 -p15_2 5#2_0 5#2_1 5#2_2 5#2_3 p14_0 p14_1 p14_2 -5#3_0 -5#3_1 -5#3_2" intLanes=":huron_0_0 :huron_1_0 :huron_1_1 :huron_3_0 :huron_4_0 :huron_5_0 :huron_5_1 :huron_7_0 :huron_8_0 :huron_9_0 :huron_9_1 :huron_11_0 :huron_12_0 :huron_13_0 :huron_13_1 :huron_15_0" shape="3176.13,2761.44 3176.29,2745.44 3174.04,2744.55 3173.24,2743.47 3172.65,2741.95 3172.27,2740.00 3172.10,2737.62 3152.90,2738.09 3152.16,2740.32 3151.18,2741.10 3149.80,2741.66 3148.01,2742.00 3145.82,2742.12 3145.88,2758.12 3148.10,2758.91 3148.87,2759.90 3149.43,2761.30 3149.75,2763.10 3149.86,2765.30 3165.86,2765.33 3167.00,2763.12 3168.43,2762.36 3170.43,2761.83 3172.99,2761.52">
+        <request index="0"  response="0000100001100000" foes="0000000001100000" cont="0"/>
+        <request index="1"  response="0000000000000000" foes="1111100011100000" cont="0"/>
+        <request index="2"  response="0000000000000000" foes="1111100011100000" cont="0"/>
+        <request index="3"  response="0000011000000000" foes="1110011011100000" cont="0"/>
+        <request index="4"  response="1000011000000000" foes="0000011000000000" cont="0"/>
+        <request index="5"  response="0000111000001111" foes="1000111000001111" cont="0"/>
+        <request index="6"  response="0000111000001111" foes="1000111000001111" cont="0"/>
+        <request index="7"  response="0110111000001110" foes="0110111000001110" cont="0"/>
+        <request index="8"  response="0110000000001000" foes="0110000000000000" cont="0"/>
+        <request index="9"  response="0000000000000000" foes="1110000011111000" cont="0"/>
+        <request index="10" response="0000000000000000" foes="1110000011111000" cont="0"/>
+        <request index="11" response="0000000000000110" foes="1110000011100110" cont="0"/>
+        <request index="12" response="0000000010000110" foes="0000000000000110" cont="0"/>
+        <request index="13" response="0000111100001110" foes="0000111110001110" cont="0"/>
+        <request index="14" response="0000111100001110" foes="0000111110001110" cont="0"/>
+        <request index="15" response="0000111001101110" foes="0000111001101110" cont="0"/>
+        <param key="origEdgeIds" value="-9749276 9749276"/>
+        <param key="origId" value="62477163 62500824"/>
+    </junction>
+    <junction id="huronN1" type="priority" x="3159.37" y="2796.72" incLanes="5#3_0 5#3_1 -5#4_0 -5#4_1" intLanes=":huronN1_0_0 :huronN1_0_1 :huronN1_2_0 :huronN1_2_1" shape="3165.78,2793.04 3149.78,2792.99 3150.60,2795.51 3151.33,2796.34 3152.04,2797.17 3152.52,2798.24 3152.59,2799.77 3165.31,2801.20 3165.63,2798.15 3165.71,2797.08 3165.75,2796.01 3165.77,2794.71">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="huronN2" type="dead_end" x="3064.16" y="2957.28" incLanes="5#4_0 5#4_1" intLanes="" shape="3064.16,2957.28 3068.40,2962.08 3064.16,2957.28"/>
+    <junction id="huronS1" type="priority" x="3157.00" y="2643.75" incLanes="-5#22_0 -5#22_1" intLanes=":huronS1_0_0 :huronS1_0_1" shape="3150.70,2647.91 3157.10,2647.75 3156.90,2639.75 3147.31,2639.99 3148.21,2643.00 3149.80,2644.89 3150.42,2646.12">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="huronS2" type="priority" x="3155.71" y="2590.93" incLanes="-5#21_0 -5#21_1 -5#21_2 5#1_0 5#1_1" intLanes=":huronS2_0_0 :huronS2_0_1 :huronS2_2_0 :huronS2_2_1" shape="3146.21,2595.16 3168.60,2594.62 3168.08,2592.61 3166.87,2591.44 3163.75,2589.95 3162.53,2588.78 3162.01,2586.77 3149.21,2587.09 3148.46,2590.14 3146.97,2592.11 3146.40,2593.37">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="huronS3" type="dead_end" x="3154.40" y="2537.55" incLanes="-5#1_0 -5#1_1" intLanes="" shape="3154.40,2537.55 3148.00,2537.71 3154.40,2537.55"/>
+    <junction id="nixon" type="traffic_light" x="2920.83" y="2752.56" incLanes="-4#3_0 -4#3_1 -p12_0 -p12_1 -p12_2 4#2_0 4#2_1 p11_0 p11_1 p11_2" intLanes=":nixon_0_0 :nixon_1_0 :nixon_2_0 :nixon_3_0 :nixon_4_0 :nixon_4_1 :nixon_6_0 :nixon_7_0 :nixon_8_0 :nixon_9_0 :nixon_10_0 :nixon_11_0 :nixon_11_1 :nixon_13_0" shape="2914.53,2766.22 2924.13,2766.14 2924.79,2763.92 2925.64,2763.14 2926.82,2762.58 2928.34,2762.24 2930.21,2762.12 2930.13,2746.12 2927.72,2745.14 2926.72,2743.92 2925.84,2742.20 2925.08,2739.99 2924.46,2737.28 2915.03,2739.06 2914.84,2741.25 2914.24,2742.02 2913.29,2742.57 2912.01,2742.90 2910.38,2743.02 2910.48,2759.02 2912.71,2759.81 2913.49,2760.81 2914.06,2762.21 2914.40,2764.01">
+        <request index="0"  response="00001000110000" foes="00000000110000" cont="0"/>
+        <request index="1"  response="11110001110000" foes="11111001110000" cont="0"/>
+        <request index="2"  response="11100101110000" foes="11100101110000" cont="0"/>
+        <request index="3"  response="10000100000000" foes="10000100000000" cont="0"/>
+        <request index="4"  response="00000000000000" foes="10001100000111" cont="0"/>
+        <request index="5"  response="00000000000000" foes="10001100000111" cont="0"/>
+        <request index="6"  response="01110000000000" foes="01111100000110" cont="0"/>
+        <request index="7"  response="01100000000100" foes="01100000000000" cont="0"/>
+        <request index="8"  response="11100001111000" foes="11100001111100" cont="0"/>
+        <request index="9"  response="11100001110010" foes="11100001110010" cont="0"/>
+        <request index="10" response="00000001000010" foes="00000001000010" cont="0"/>
+        <request index="11" response="00000000000000" foes="00001111000110" cont="0"/>
+        <request index="12" response="00000000000000" foes="00001111000110" cont="0"/>
+        <request index="13" response="00000000111000" foes="00001100111110" cont="0"/>
+    </junction>
+    <junction id="nixonN1" type="priority" x="2921.16" y="2797.31" incLanes="-4#4_0 4#3_0" intLanes=":nixonN1_0_0 :nixonN1_0_1 :nixonN1_2_0" shape="2917.99,2801.33 2924.39,2801.29 2924.33,2793.29 2914.73,2793.36 2915.58,2796.38 2917.14,2798.31 2917.74,2799.55">
+        <request index="0" response="000" foes="000" cont="0"/>
+        <request index="1" response="000" foes="000" cont="0"/>
+        <request index="2" response="000" foes="000" cont="0"/>
+    </junction>
+    <junction id="nixonN3" type="dead_end" x="2919.32" y="2998.30" incLanes="4#4_0" intLanes="" shape="2919.32,2998.30 2922.45,2998.98 2919.32,2998.30"/>
+    <junction id="nixonS1" type="priority" x="2914.72" y="2720.13" incLanes="-4#2_0 4#1_0" intLanes=":nixonS1_0_0 :nixonS1_1_0 :nixonS1_1_1" shape="2912.45,2725.36 2921.88,2723.59 2921.20,2721.23 2920.26,2719.70 2919.09,2718.62 2917.73,2717.63 2916.19,2716.35 2914.52,2714.43 2909.35,2718.20 2911.02,2720.61 2911.49,2721.53 2911.84,2722.50 2912.13,2723.72">
+        <request index="0" response="000" foes="000" cont="0"/>
+        <request index="1" response="000" foes="000" cont="0"/>
+        <request index="2" response="000" foes="000" cont="0"/>
+    </junction>
+    <junction id="nixonS2" type="dead_end" x="2907.70" y="2589.88" incLanes="-4#1_0" intLanes="" shape="2907.70,2589.88 2907.50,2586.69 2907.70,2589.88"/>
+    <junction id="plymouth16" type="priority" x="2851.99" y="2753.02" incLanes="-p11_0 -p11_1 p10_0 p10_1" intLanes=":plymouth16_0_0 :plymouth16_0_1 :plymouth16_2_0 :plymouth16_2_1" shape="2856.03,2759.39 2855.92,2743.39 2852.90,2744.24 2850.97,2745.80 2849.73,2746.40 2847.95,2746.65 2848.04,2759.45">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="plymouth18" type="priority" x="2978.95" y="2752.34" incLanes="-p13_0 -p13_1 p12_0 p12_1" intLanes=":plymouth18_0_0 :plymouth18_0_1 :plymouth18_2_0 :plymouth18_2_1" shape="2982.97,2758.72 2982.92,2745.92 2974.93,2745.95 2974.98,2761.95 2978.01,2761.11 2979.95,2759.57 2981.19,2758.97">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="plymouth19" type="priority" x="3100.15" y="2751.89" incLanes="-p14_0 -p14_1 p13_0 p13_1" intLanes=":plymouth19_0_0 :plymouth19_0_1 :plymouth19_2_0 :plymouth19_2_1" shape="3104.18,2758.27 3104.11,2742.27 3101.08,2743.12 3099.15,2744.66 3097.92,2745.26 3096.13,2745.50 3096.17,2758.30">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="plymouth21" type="priority" x="3340.69" y="2753.16" incLanes="-p17_0 -p17_1 p15_0 p15_1" intLanes=":plymouth21_0_0 :plymouth21_0_1 :plymouth21_2_0 :plymouth21_2_1" shape="3344.21,2759.81 3345.07,2747.04 3336.83,2746.73 3336.71,2762.73 3339.55,2761.93 3340.46,2761.18 3341.37,2760.45 3342.54,2759.94">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="traverWood" type="dead_end" x="2521.27" y="2718.00" incLanes="-p10_0 -p10_1" intLanes="" shape="2521.27,2718.00 2518.71,2723.86 2521.27,2718.00"/>
+
+    <connection from="-4#2" to="-4#1" fromLane="0" toLane="0" via=":nixonS1_0_0" dir="s" state="M"/>
+    <connection from="-4#3" to="-p11" fromLane="0" toLane="0" via=":nixon_0_0" tl="TLS_nixon" linkIndex="0" dir="r" state="o"/>
+    <connection from="-4#3" to="-4#2" fromLane="0" toLane="0" via=":nixon_1_0" tl="TLS_nixon" linkIndex="1" dir="s" state="o"/>
+    <connection from="-4#3" to="p12" fromLane="1" toLane="1" via=":nixon_2_0" tl="TLS_nixon" linkIndex="2" dir="l" state="o"/>
+    <connection from="-4#4" to="-4#3" fromLane="0" toLane="0" via=":nixonN1_0_0" dir="s" state="M"/>
+    <connection from="-4#4" to="-4#3" fromLane="0" toLane="1" via=":nixonN1_0_1" dir="s" state="M"/>
+    <connection from="-5#21" to="-5#1" fromLane="1" toLane="0" via=":huronS2_0_0" dir="s" state="M"/>
+    <connection from="-5#21" to="-5#1" fromLane="2" toLane="1" via=":huronS2_0_1" dir="s" state="M"/>
+    <connection from="-5#22" to="-5#21" fromLane="0" toLane="1" via=":huronS1_0_0" dir="s" state="M"/>
+    <connection from="-5#22" to="-5#21" fromLane="1" toLane="2" via=":huronS1_0_1" dir="s" state="M"/>
+    <connection from="-5#3" to="-p14" fromLane="0" toLane="0" via=":huron_12_0" tl="TLS_huron" linkIndex="12" dir="r" state="o"/>
+    <connection from="-5#3" to="-5#22" fromLane="0" toLane="0" via=":huron_13_0" tl="TLS_huron" linkIndex="13" dir="s" state="o"/>
+    <connection from="-5#3" to="-5#22" fromLane="1" toLane="1" via=":huron_13_1" tl="TLS_huron" linkIndex="14" dir="s" state="o"/>
+    <connection from="-5#3" to="p15" fromLane="2" toLane="1" via=":huron_15_0" tl="TLS_huron" linkIndex="15" dir="l" state="o"/>
+    <connection from="-5#4" to="-5#3" fromLane="0" toLane="0" via=":huronN1_2_0" dir="s" state="M"/>
+    <connection from="-5#4" to="-5#3" fromLane="1" toLane="1" via=":huronN1_2_1" dir="s" state="M"/>
+    <connection from="-p11" to="-p10" fromLane="0" toLane="0" via=":plymouth16_0_0" dir="s" state="M"/>
+    <connection from="-p11" to="-p10" fromLane="1" toLane="1" via=":plymouth16_0_1" dir="s" state="M"/>
+    <connection from="-p12" to="4#3" fromLane="0" toLane="0" via=":nixon_3_0" tl="TLS_nixon" linkIndex="3" dir="r" state="O"/>
+    <connection from="-p12" to="-p11" fromLane="0" toLane="0" via=":nixon_4_0" tl="TLS_nixon" linkIndex="4" dir="s" state="O"/>
+    <connection from="-p12" to="-p11" fromLane="1" toLane="1" via=":nixon_4_1" tl="TLS_nixon" linkIndex="5" dir="s" state="O"/>
+    <connection from="-p12" to="-4#2" fromLane="2" toLane="0" via=":nixon_6_0" tl="TLS_nixon" linkIndex="6" dir="l" state="o"/>
+    <connection from="-p13" to="-p12" fromLane="0" toLane="0" via=":plymouth18_0_0" dir="s" state="M"/>
+    <connection from="-p13" to="-p12" fromLane="1" toLane="1" via=":plymouth18_0_1" dir="s" state="M"/>
+    <connection from="-p14" to="-p13" fromLane="0" toLane="0" via=":plymouth19_0_0" dir="s" state="M"/>
+    <connection from="-p14" to="-p13" fromLane="1" toLane="1" via=":plymouth19_0_1" dir="s" state="M"/>
+    <connection from="-p15" to="5#3" fromLane="0" toLane="0" via=":huron_0_0" tl="TLS_huron" linkIndex="0" dir="r" state="O"/>
+    <connection from="-p15" to="-p14" fromLane="0" toLane="0" via=":huron_1_0" tl="TLS_huron" linkIndex="1" dir="s" state="O"/>
+    <connection from="-p15" to="-p14" fromLane="1" toLane="1" via=":huron_1_1" tl="TLS_huron" linkIndex="2" dir="s" state="O"/>
+    <connection from="-p15" to="-5#22" fromLane="2" toLane="1" via=":huron_3_0" tl="TLS_huron" linkIndex="3" dir="l" state="o"/>
+    <connection from="-p17" to="-p15" fromLane="0" toLane="0" via=":plymouth21_0_0" dir="s" state="M"/>
+    <connection from="-p17" to="-p15" fromLane="1" toLane="1" via=":plymouth21_0_1" dir="s" state="M"/>
+    <connection from="4#1" to="4#2" fromLane="0" toLane="0" via=":nixonS1_1_0" dir="s" state="M"/>
+    <connection from="4#1" to="4#2" fromLane="0" toLane="1" via=":nixonS1_1_1" dir="s" state="M"/>
+    <connection from="4#2" to="p12" fromLane="0" toLane="0" via=":nixon_7_0" tl="TLS_nixon" linkIndex="7" dir="r" state="o"/>
+    <connection from="4#2" to="4#3" fromLane="0" toLane="0" via=":nixon_8_0" tl="TLS_nixon" linkIndex="8" dir="s" state="o"/>
+    <connection from="4#2" to="-p11" fromLane="1" toLane="1" via=":nixon_9_0" tl="TLS_nixon" linkIndex="9" dir="l" state="o"/>
+    <connection from="4#3" to="4#4" fromLane="0" toLane="0" via=":nixonN1_2_0" dir="s" state="M"/>
+    <connection from="5#1" to="5#2" fromLane="0" toLane="1" via=":huronS2_2_0" dir="s" state="M"/>
+    <connection from="5#1" to="5#2" fromLane="1" toLane="2" via=":huronS2_2_1" dir="s" state="M"/>
+    <connection from="5#2" to="p15" fromLane="0" toLane="0" via=":huron_4_0" tl="TLS_huron" linkIndex="4" dir="r" state="o"/>
+    <connection from="5#2" to="5#3" fromLane="1" toLane="0" via=":huron_5_0" tl="TLS_huron" linkIndex="5" dir="s" state="o"/>
+    <connection from="5#2" to="5#3" fromLane="2" toLane="1" via=":huron_5_1" tl="TLS_huron" linkIndex="6" dir="s" state="o"/>
+    <connection from="5#2" to="-p14" fromLane="3" toLane="1" via=":huron_7_0" tl="TLS_huron" linkIndex="7" dir="l" state="o"/>
+    <connection from="5#3" to="5#4" fromLane="0" toLane="0" via=":huronN1_0_0" dir="s" state="M"/>
+    <connection from="5#3" to="5#4" fromLane="1" toLane="1" via=":huronN1_0_1" dir="s" state="M"/>
+    <connection from="p10" to="p11" fromLane="0" toLane="0" via=":plymouth16_2_0" dir="s" state="M"/>
+    <connection from="p10" to="p11" fromLane="1" toLane="1" via=":plymouth16_2_1" dir="s" state="M"/>
+    <connection from="p11" to="-4#2" fromLane="0" toLane="0" via=":nixon_10_0" tl="TLS_nixon" linkIndex="10" dir="r" state="O"/>
+    <connection from="p11" to="p12" fromLane="0" toLane="0" via=":nixon_11_0" tl="TLS_nixon" linkIndex="11" dir="s" state="O"/>
+    <connection from="p11" to="p12" fromLane="1" toLane="1" via=":nixon_11_1" tl="TLS_nixon" linkIndex="12" dir="s" state="O"/>
+    <connection from="p11" to="4#3" fromLane="2" toLane="0" via=":nixon_13_0" tl="TLS_nixon" linkIndex="13" dir="l" state="o"/>
+    <connection from="p12" to="p13" fromLane="0" toLane="0" via=":plymouth18_2_0" dir="s" state="M"/>
+    <connection from="p12" to="p13" fromLane="1" toLane="1" via=":plymouth18_2_1" dir="s" state="M"/>
+    <connection from="p13" to="p14" fromLane="0" toLane="0" via=":plymouth19_2_0" dir="s" state="M"/>
+    <connection from="p13" to="p14" fromLane="1" toLane="1" via=":plymouth19_2_1" dir="s" state="M"/>
+    <connection from="p14" to="-5#22" fromLane="0" toLane="0" via=":huron_8_0" tl="TLS_huron" linkIndex="8" dir="r" state="O"/>
+    <connection from="p14" to="p15" fromLane="0" toLane="0" via=":huron_9_0" tl="TLS_huron" linkIndex="9" dir="s" state="O"/>
+    <connection from="p14" to="p15" fromLane="1" toLane="1" via=":huron_9_1" tl="TLS_huron" linkIndex="10" dir="s" state="O"/>
+    <connection from="p14" to="5#3" fromLane="2" toLane="1" via=":huron_11_0" tl="TLS_huron" linkIndex="11" dir="l" state="o"/>
+    <connection from="p15" to="p16" fromLane="0" toLane="0" via=":plymouth21_2_0" dir="s" state="M"/>
+    <connection from="p15" to="p16" fromLane="1" toLane="1" via=":plymouth21_2_1" dir="s" state="M"/>
+    <connection from="p16" to="p17" fromLane="0" toLane="1" via=":J1_0_0" dir="s" state="M"/>
+    <connection from="p16" to="p17" fromLane="1" toLane="2" via=":J1_0_1" dir="s" state="M"/>
+
+    <connection from=":J1_0" to="p17" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":J1_0" to="p17" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":huron_0" to="5#3" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":huron_1" to="-p14" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":huron_1" to="-p14" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":huron_3" to="-5#22" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":huron_4" to="p15" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":huron_5" to="5#3" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":huron_5" to="5#3" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":huron_7" to="-p14" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":huron_8" to="-5#22" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":huron_9" to="p15" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":huron_9" to="p15" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":huron_11" to="5#3" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":huron_12" to="-p14" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":huron_13" to="-5#22" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":huron_13" to="-5#22" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":huron_15" to="p15" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":huronN1_0" to="5#4" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":huronN1_0" to="5#4" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":huronN1_2" to="-5#3" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":huronN1_2" to="-5#3" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":huronS1_0" to="-5#21" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":huronS1_0" to="-5#21" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":huronS2_0" to="-5#1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":huronS2_0" to="-5#1" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":huronS2_2" to="5#2" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":huronS2_2" to="5#2" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":nixon_0" to="-p11" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":nixon_1" to="-4#2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nixon_2" to="p12" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":nixon_3" to="4#3" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":nixon_4" to="-p11" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nixon_4" to="-p11" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nixon_6" to="-4#2" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":nixon_7" to="p12" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":nixon_8" to="4#3" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nixon_9" to="-p11" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":nixon_10" to="-4#2" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":nixon_11" to="p12" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nixon_11" to="p12" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nixon_13" to="4#3" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":nixonN1_0" to="-4#3" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nixonN1_0" to="-4#3" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nixonN1_2" to="4#4" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nixonS1_0" to="-4#1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nixonS1_1" to="4#2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nixonS1_1" to="4#2" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":plymouth16_0" to="-p10" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":plymouth16_0" to="-p10" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":plymouth16_2" to="p11" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":plymouth16_2" to="p11" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":plymouth18_0" to="-p12" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":plymouth18_0" to="-p12" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":plymouth18_2" to="p13" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":plymouth18_2" to="p13" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":plymouth19_0" to="-p13" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":plymouth19_0" to="-p13" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":plymouth19_2" to="p14" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":plymouth19_2" to="p14" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":plymouth21_0" to="-p15" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":plymouth21_0" to="-p15" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":plymouth21_2" to="p16" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":plymouth21_2" to="p16" fromLane="1" toLane="1" dir="s" state="M"/>
+
+</net>

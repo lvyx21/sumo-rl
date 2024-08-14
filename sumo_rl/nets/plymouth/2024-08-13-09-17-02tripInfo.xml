@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2024-08-13 09:17:02 by Eclipse SUMO GUI Version 1.10.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/home/lvyx/Documents/sumo-rl-master-plymouth/sumo_rl/nets/plymouth/plymouth_nixon_and_huron.net.xml"/>
+        <route-files value="/home/lvyx/Documents/sumo-rl-master-plymouth/sumo_rl/nets/plymouth/plymouth.rou.xml"/>
+    </input>
+
+    <output>
+        <output-prefix value="TIME"/>
+        <tripinfo-output value="/home/lvyx/Documents/sumo-rl-master-plymouth/sumo_rl/nets/plymouth/tripInfo.xml"/>
+        <statistic-output value="/home/lvyx/Documents/sumo-rl-master-plymouth/sumo_rl/nets/plymouth/statistics.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+    </time>
+
+    <report>
+        <verbose value="false"/>
+        <no-step-log value="true"/>
+    </report>
+
+</configuration>
+-->
+
+<tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
+</tripinfos>
