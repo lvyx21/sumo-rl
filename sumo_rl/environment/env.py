@@ -364,12 +364,18 @@ class SumoEnvironment(gym.Env,VehicleController):
                         self.smart_vehicle[vehicle_id].set_next_action(vehicle_action)
             self._run_steps()
 
-        if self.last_type2_vehicle is not None and self.sumo.vehicle.getRoadID(self.last_type2_vehicle) == "":  # 到达终点
-            self._assign_next_type2_vehicle()
-        self._update_known_smart_vehicles()
-        
+        #if self.last_type2_vehicle is not None and self.sumo.vehicle.getRoadID(self.last_type2_vehicle) == "":  # 到达终点
+        self._assign_next_type2_vehicle()
+     
         observations = self._compute_observations()
         rewards = self._compute_rewards()
+
+        with open("rewards_log.txt", "a") as f:
+            f.write(f"Step {self.sim_step}:\n")
+            f.write(f"Traffic Signal Rewards: { {ts_id: rewards[ts_id] for ts_id in self.ts_ids} }\n")
+            f.write(f"Vehicle Rewards: { {vehicle_id: rewards[vehicle_id] for vehicle_id in self.known_smart_vehicle_id} }\n")
+            f.write("\n")
+
         dones = self._compute_dones()
         terminated = False  # there are no 'terminal' states in this environment
         truncated = dones["__all__"]  # episode ends when sim_step >= max_steps
@@ -379,18 +385,76 @@ class SumoEnvironment(gym.Env,VehicleController):
             return observations[self.ts_ids[0]], rewards[self.ts_ids[0]], terminated, truncated, info
         else:
             return observations, rewards, dones, info
-
     def _assign_next_type2_vehicle(self):
-        """Assign the next vehicle in the list to be type2."""
         current_vehicle_ids = self.sumo.vehicle.getIDList()
-        for vehicle_id in current_vehicle_ids:
-            if self.vehicle_assignment_index < len(vehicle_ids):
-                next_vehicle_id = vehicle_ids[self.vehicle_assignment_index]
-                self.sumo.vehicle.setType(next_vehicle_id, 'type2')
-                self.sumo.vehicle.setColor(next_vehicle_id,(0,255,0))
-                self.known_smart_vehicle_id.append(next_vehicle_id)
-                self.smart_vehicle[next_vehicle_id] = VehicleController(self, next_vehicle_id, self.sumo)
+        with open("type2_vehicle_assignment.log", "a") as log_file:
+            log_file.write("Function _assign_next_type2_vehicle was called.\n")
+            
+            
+            log_file.write(f"Current vehicle IDs: {current_vehicle_ids}\n")
+            
+            target_edges = ['p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17']
+            log_file.write(f"Target edges: {target_edges}\n")
+            log_file.write(f"Known smart vehicle IDs: {self.known_smart_vehicle_id}\n")
+        
+            # 检查是否已有type2车辆在场上
+            for vehicle_id in self.known_smart_vehicle_id:
+                if self.sumo.vehicle.getRoadID(vehicle_id) != "":
+                    log_file.write(f"Type2 vehicle {vehicle_id} is still on the road, not assigning a new type2 vehicle.\n")
+                    return
+            
+            while self.vehicle_assignment_index < len(current_vehicle_ids):
+                next_vehicle_id = current_vehicle_ids[self.vehicle_assignment_index]
+                vehicle_route = self.sumo.vehicle.getRoute(next_vehicle_id)
+                log_file.write(f"Checking vehicle {next_vehicle_id} with route {vehicle_route}\n")
+
+                # 检查车辆的route是否包含目标边集合
+                if all(edge in vehicle_route for edge in target_edges):
+                    self.sumo.vehicle.setType(next_vehicle_id, 'type2')
+                    self.sumo.vehicle.setColor(next_vehicle_id, (0, 255, 0, 255))
+                    self.known_smart_vehicle_id.append(next_vehicle_id)
+                    self.smart_vehicle[next_vehicle_id] = VehicleController(self, next_vehicle_id, self.sumo)
+                    self.last_type2_vehicle = next_vehicle_id  # 记录最后分配的 type2 车辆
+                    log_file.write(f"Assigned vehicle {next_vehicle_id} as type2 and set its color to green.\n")
+                    break
+                else:
+                    log_file.write(f"Skipped vehicle {next_vehicle_id} as its route does not match the target edges.\n")
+
                 self.vehicle_assignment_index += 1
+
+
+        """Assign the next vehicle in the list to be type2 if it follows the specified route and only one type2 is allowed on the route.
+        current_vehicle_ids = self.sumo.vehicle.getIDList()
+        target_edges = ['p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17']  # 指定的边集合
+
+        # 打开一个文件用于写入（如果文件不存在则会自动创建）
+        with open("type2_vehicle_assignment.log", "a") as log_file:
+            # 检查是否已有type2车辆在场上
+            for vehicle_id in self.known_smart_vehicle_id:
+                if self.sumo.vehicle.getRoadID(vehicle_id) != "":
+                    log_file.write(f"Type2 vehicle {vehicle_id} is still on the road, not assigning a new type2 vehicle.\n")
+                    return
+
+            while self.vehicle_assignment_index < len(current_vehicle_ids):
+                next_vehicle_id = current_vehicle_ids[self.vehicle_assignment_index]
+                vehicle_route = self.sumo.vehicle.getRoute(next_vehicle_id)
+
+                # 检查车辆的route是否包含目标边集合
+                if all(edge in vehicle_route for edge in target_edges):
+                    self.sumo.vehicle.setType(next_vehicle_id, 'type2')
+                    self.sumo.vehicle.setColor(next_vehicle_id, (0, 255, 0, 255))
+                    self.known_smart_vehicle_id.append(next_vehicle_id)
+                    self.smart_vehicle[next_vehicle_id] = VehicleController(self, next_vehicle_id, self.sumo)
+                    self.last_type2_vehicle = next_vehicle_id  # 记录最后分配的 type2 车辆
+                    log_file.write(f"Assigned vehicle {next_vehicle_id} as type2 and set its color to green.\n")
+                    break
+                else:
+                    log_file.write(f"Skipped vehicle {next_vehicle_id} as its route does not match the target edges.\n")
+
+                self.vehicle_assignment_index += 1
+        """
+
+    '''
     def _update_known_smart_vehicles(self):
         """Update the list of known smart vehicles (type2) at each step."""
         current_vehicle_ids = self.sumo.vehicle.getIDList()
@@ -401,7 +465,6 @@ class SumoEnvironment(gym.Env,VehicleController):
                 self.last_type2_vehicle = vehicle_id
         print("Known Smart Vehicle IDs:", self.known_smart_vehicle_id)
 
-    '''
     def _get_traffic_light_state(self, tls_id):
         # 获取当前红绿灯的状态
         state = traci.trafficlight.getRedYellowGreenState(tls_id)
