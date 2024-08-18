@@ -42,11 +42,11 @@ from gymnasium import spaces
 class VehicleController:
     MIN_GAP = 2.5
 
-    def __init__(self, sumo, env,vehicle_id):
+    def __init__(self, env,vehicle_id,sumo,):
         self.vehicle_id=vehicle_id
-        self.sumo = sumo
         self.env = env
         self.id = vehicle_id
+        self.sumo = sumo
         self.current_speed = self.sumo.vehicle.getSpeed(self.id)
         self.next_action_time = env.sim_step
         self.delta_time=5
@@ -64,7 +64,7 @@ class VehicleController:
     def update(self):
         self.current_speed=self.sumo.vehicle.getSpeed(self.id)
         if self.vehicle_time_to_act():
-            self.excute_action() 
+            self.execute_action() 
     
     def execute_action(self):
         if self.next_action is not None:
@@ -88,6 +88,19 @@ class VehicleController:
     def vehicle_time_to_act(self):
         return self.next_action_time <= self.env.sim_step
 
+    def one_hot_encode_traffic_signal(self,state_str):
+        """将交通信号字符串转换为 one-hot 编码."""
+        mapping = {'r': [1, 0, 0, 0],  # 红灯
+                'y': [0, 1, 0, 0],  # 黄灯
+                'g': [0, 0, 1, 0],  # 绿灯（小写表示一般绿灯）
+                'G': [0, 0, 0, 1],
+                's': [0, 0, 0, 0]}  # 绿灯（大写表示特殊绿灯或直行绿灯）
+        
+        # 对字符串中的每个字符进行 one-hot 编码
+        one_hot_encoded = [mapping[char] for char in state_str]
+        
+        # 将所有 one-hot 向量展平（flatten）为一个长向量
+        return np.array(one_hot_encoded).flatten()
     
     
     def get_observation(self):
@@ -96,16 +109,19 @@ class VehicleController:
         
         # 获取当前车辆的速度
         this_speed = self.sumo.vehicle.getSpeed(self.id)
-        
+        speed_observe=this_speed/max_speed
         # 获取领先车辆的信息
-        lead_id = self.sumo.vehicle.getLeader(self.id)
-        if lead_id in ["", None]:
-            lead_speed = max_speed
-            lead_head = max_length
-        else:
+        current_vehicles = self.sumo.vehicle.getIDList()
+        lead_id = self.sumo.vehicle.getLeader(self.id)    
+        if lead_id in current_vehicles:
             lead_speed = self.sumo.vehicle.getSpeed(lead_id)
             lead_head = self.sumo.vehicle.getPosition(lead_id)[0] - self.sumo.vehicle.getPosition(self.id)[0] - self.sumo.vehicle.getLength(self.id)
-        
+        else:
+            lead_speed = max_speed
+            lead_head = max_length
+        lead_speed_observe=(lead_speed-this_speed)/max_speed
+        lead_distance_observe=lead_head/max_length
+        '''
         # 获取跟随车辆的信息
         follower_id = self.sumo.vehicle.getFollower(self.id)
         if follower_id in ["", None]:
@@ -114,21 +130,16 @@ class VehicleController:
         else:
             follow_speed = self.sumo.vehicle.getSpeed(follower_id)
             follow_head = self.sumo.vehicle.getHeadway(follower_id)
-        
-        # 归一化并组合观测
-        observation = [
-            this_speed / max_speed,
-            (lead_speed - this_speed) / max_speed,
-            lead_head / max_length,
-            (this_speed - follow_speed) / max_speed,
-            follow_head / max_length
-        ]
-
+        '''
+  
+    
         for ts_id in self.env.ts_ids:
             traffic_signal_state = self.sumo.trafficlight.getRedYellowGreenState(ts_id)
-            observation.append(traffic_signal_state)
+            # 对每个交通信号状态字符串进行 one-hot 编码
+            encoded_state = self.one_hot_encode_traffic_signal(traffic_signal_state)
+           
 
-        return np.array(observation, dtype=np.float32)
+        return np.array(speed_observe+lead_speed_observe+lead_distance_observe+encoded_state, dtype=np.float32)
         
     
         

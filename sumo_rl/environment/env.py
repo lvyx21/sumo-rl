@@ -268,7 +268,7 @@ class SumoEnvironment(gym.Env,VehicleController):
         else:
             traci.start(sumo_cmd, label=self.label)
             self.sumo = traci.getConnection(self.label)
-        self._assign_next_type2_vehicle()
+        #self._assign_next_type2_vehicle()
         if self.use_gui or self.render_mode is not None:
             if "DEFAULT_VIEW" not in dir(traci.gui):  # traci.gui.DEFAULT_VIEW is not defined in libsumo
                 traci.gui.DEFAULT_VIEW = "View #0"
@@ -365,7 +365,8 @@ class SumoEnvironment(gym.Env,VehicleController):
             self._run_steps()
 
         #if self.last_type2_vehicle is not None and self.sumo.vehicle.getRoadID(self.last_type2_vehicle) == "":  # 到达终点
-        self._assign_next_type2_vehicle()
+        #self._assign_next_type2_vehicle()
+        
      
         observations = self._compute_observations()
         rewards = self._compute_rewards()
@@ -386,73 +387,33 @@ class SumoEnvironment(gym.Env,VehicleController):
         else:
             return observations, rewards, dones, info
     def _assign_next_type2_vehicle(self):
-        current_vehicle_ids = self.sumo.vehicle.getIDList()
-        with open("type2_vehicle_assignment.log", "a") as log_file:
-            log_file.write("Function _assign_next_type2_vehicle was called.\n")
-            
-            
-            log_file.write(f"Current vehicle IDs: {current_vehicle_ids}\n")
-            
-            target_edges = ['p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17']
-            log_file.write(f"Target edges: {target_edges}\n")
-            log_file.write(f"Known smart vehicle IDs: {self.known_smart_vehicle_id}\n")
+        with open("type2_vehicle_assignment.log","a")as log_file:
+            target_route=('p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17')
+            log_file.write(f"Current known_smart_vehicle_id: {self.known_smart_vehicle_id}\n")
+
+            for vehicle_id in self.known_smart_vehicle_id:
+                    if self.sumo.vehicle.getRoadID(vehicle_id) != "":
+                        log_file.write(f"Type2 vehicle {vehicle_id} is still on the road, not assigning a new type2 vehicle.\n")
+                        return
+            vehicle_ids = self.sumo.simulation.getDepartedIDList()
         
-            # 检查是否已有type2车辆在场上
-            for vehicle_id in self.known_smart_vehicle_id:
-                if self.sumo.vehicle.getRoadID(vehicle_id) != "":
-                    log_file.write(f"Type2 vehicle {vehicle_id} is still on the road, not assigning a new type2 vehicle.\n")
-                    return
-            
-            while self.vehicle_assignment_index < len(current_vehicle_ids):
-                next_vehicle_id = current_vehicle_ids[self.vehicle_assignment_index]
-                vehicle_route = self.sumo.vehicle.getRoute(next_vehicle_id)
-                log_file.write(f"Checking vehicle {next_vehicle_id} with route {vehicle_route}\n")
+            for vehicle_id in vehicle_ids:
+                route=self.sumo.vehicle.getRoute(vehicle_id)
+                log_file.write(f"Vehicle {vehicle_id} route: {route}\n")
 
-                # 检查车辆的route是否包含目标边集合
-                if all(edge in vehicle_route for edge in target_edges):
-                    self.sumo.vehicle.setType(next_vehicle_id, 'type2')
-                    self.sumo.vehicle.setColor(next_vehicle_id, (0, 255, 0, 255))
-                    self.known_smart_vehicle_id.append(next_vehicle_id)
-                    self.smart_vehicle[next_vehicle_id] = VehicleController(self, next_vehicle_id, self.sumo)
-                    self.last_type2_vehicle = next_vehicle_id  # 记录最后分配的 type2 车辆
-                    log_file.write(f"Assigned vehicle {next_vehicle_id} as type2 and set its color to green.\n")
+                if route==target_route:
+                    self.sumo.vehicle.setType(vehicle_id,"type2")
+                    self.sumo.vehicle.setColor(vehicle_id,(0,255,0,255))
+                    self.known_smart_vehicle_id.append(vehicle_id)
+                    self.smart_vehicle[vehicle_id]=VehicleController(self,vehicle_id,self.sumo)
+                    log_file.write(f"matched vehicle{vehicle_id} has been set to type2\n")
                     break
                 else:
-                    log_file.write(f"Skipped vehicle {next_vehicle_id} as its route does not match the target edges.\n")
+                    log_file.write(f"Skipped vehicle {vehicle_id} as its route does not match the target edges.\n")
+                
 
-                self.vehicle_assignment_index += 1
 
 
-        """Assign the next vehicle in the list to be type2 if it follows the specified route and only one type2 is allowed on the route.
-        current_vehicle_ids = self.sumo.vehicle.getIDList()
-        target_edges = ['p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17']  # 指定的边集合
-
-        # 打开一个文件用于写入（如果文件不存在则会自动创建）
-        with open("type2_vehicle_assignment.log", "a") as log_file:
-            # 检查是否已有type2车辆在场上
-            for vehicle_id in self.known_smart_vehicle_id:
-                if self.sumo.vehicle.getRoadID(vehicle_id) != "":
-                    log_file.write(f"Type2 vehicle {vehicle_id} is still on the road, not assigning a new type2 vehicle.\n")
-                    return
-
-            while self.vehicle_assignment_index < len(current_vehicle_ids):
-                next_vehicle_id = current_vehicle_ids[self.vehicle_assignment_index]
-                vehicle_route = self.sumo.vehicle.getRoute(next_vehicle_id)
-
-                # 检查车辆的route是否包含目标边集合
-                if all(edge in vehicle_route for edge in target_edges):
-                    self.sumo.vehicle.setType(next_vehicle_id, 'type2')
-                    self.sumo.vehicle.setColor(next_vehicle_id, (0, 255, 0, 255))
-                    self.known_smart_vehicle_id.append(next_vehicle_id)
-                    self.smart_vehicle[next_vehicle_id] = VehicleController(self, next_vehicle_id, self.sumo)
-                    self.last_type2_vehicle = next_vehicle_id  # 记录最后分配的 type2 车辆
-                    log_file.write(f"Assigned vehicle {next_vehicle_id} as type2 and set its color to green.\n")
-                    break
-                else:
-                    log_file.write(f"Skipped vehicle {next_vehicle_id} as its route does not match the target edges.\n")
-
-                self.vehicle_assignment_index += 1
-        """
 
     '''
     def _update_known_smart_vehicles(self):
@@ -707,12 +668,11 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         """Initialize the environment."""
         EzPickle.__init__(self, **kwargs)
         self._kwargs = kwargs
-
         self.seed()
         self.env = SumoEnvironment(**self._kwargs)
         self.render_mode = self.env.render_mode
-        self.agents = self.env.ts_ids+self.env.known_smart_vehicle_id
-        self.possible_agents = self.env.ts_ids+self.env.known_smart_vehicle_id
+        self.agents = self.env.ts_ids
+        self.possible_agents = self.env.ts_ids
         self._agent_selector = agent_selector(self.agents)
         self.agent_selection = self._agent_selector.reset()
         # spaces
@@ -732,7 +692,8 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
     def reset(self, seed: Optional[int] = None, options: Optional[dict] = None):
         """Reset the environment."""
         self.env.reset(seed=seed, options=options)
-        self.agents = self.possible_agents[:]
+        current_known_smart_vehicle_ids = [str(vehicle_id) for vehicle_id in self.env.known_smart_vehicle_id]
+        self.agents = self.env.ts_ids + current_known_smart_vehicle_ids
         self.agent_selection = self._agent_selector.reset()
         self.rewards = {agent: 0 for agent in self.agents}
         self._cumulative_rewards = {agent: 0 for agent in self.agents}
@@ -775,10 +736,26 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         self.env.save_csv(out_csv_name, episode)
 
     def step(self, action):
+        self.env._assign_next_type2_vehicle()
+        current_known_smart_vehicle_ids = [str(vehicle_id) for vehicle_id in self.env.known_smart_vehicle_id]
+        self.agents = self.env.ts_ids + current_known_smart_vehicle_ids
+        with open("tagent.log","a")as agent_file:
+            agent_file.write(f"agent_id: {self.agents}\n")
+        
+        for new_agent in current_known_smart_vehicle_ids:
+            self.rewards[new_agent] = 0
+            self.terminations[new_agent] = False
+            self.truncations[new_agent] = False
+            self.infos[new_agent] = {}
+            self.action_spaces[new_agent] = self.env.action_spaces(new_agent)
+            self.observation_spaces[new_agent] = self.env.observation_spaces(new_agent)
+
         """Step the environment."""
         if self.truncations[self.agent_selection] or self.terminations[self.agent_selection]:
             return self._was_dead_step(action)
         agent = self.agent_selection
+        with open("tagent.log","a")as agent_file:
+            agent_file.write(f"agent: {agent}\n")
         if not self.action_spaces[agent].contains(action):
             raise Exception(
                 "Action for agent {} must be in Discrete({})."
@@ -810,3 +787,4 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         self.agent_selection = self._agent_selector.next()
         self._cumulative_rewards[agent] = 0
         self._accumulate_rewards()
+
