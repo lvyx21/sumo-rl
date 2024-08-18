@@ -113,3 +113,5 @@ settings.json
 *.csv
 /logs
 /wandb
+
+*.xml

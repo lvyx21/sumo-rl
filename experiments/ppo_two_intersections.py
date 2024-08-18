@@ -21,9 +21,9 @@ from supersuit import pad_observations_v0  # 引入 SuperSuit 包装器
 
 def create_env(env_config):
     env = sumo_rl.parallel_env(
-        net_file="sumo_rl/nets/plymouth/plymouth_nixon_and_huron.net.xml",
-        route_file="sumo_rl/nets/plymouth/plymouth.rou.xml",
-        out_csv_name="outputs/two_intersections/ppo",
+        net_file="../sumo_rl/nets/plymouth/plymouth_nixon_and_huron.net.xml",
+        route_file="../sumo_rl/nets/plymouth/plymouth.rou.xml",
+        out_csv_name="../outputs/two_intersections/ppo",
         use_gui= False,
         num_seconds=80000,
     )
