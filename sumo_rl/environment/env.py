@@ -749,7 +749,7 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
             self.infos[new_agent] = {}
             self.action_spaces[new_agent] = self.env.action_spaces(new_agent)
             self.observation_spaces[new_agent] = self.env.observation_spaces(new_agent)
-
+            #self._cumulative_rewards[new_agent] = 0
         """Step the environment."""
         if self.truncations[self.agent_selection] or self.terminations[self.agent_selection]:
             return self._was_dead_step(action)
@@ -786,5 +786,7 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
 
         self.agent_selection = self._agent_selector.next()
         self._cumulative_rewards[agent] = 0
+        with open("tagent.log","a")as agent_file:
+            agent_file.write(f"agent222: {agent}\n")
         self._accumulate_rewards()
 
