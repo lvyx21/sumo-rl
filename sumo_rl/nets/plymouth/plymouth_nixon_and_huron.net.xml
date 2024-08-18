@@ -470,20 +470,32 @@
         <phase duration="1"  state="srrsrrrsrrsrrr"/>
     </tlLogic>-->
     <tlLogic id="TLS_huron" type="static" programID="1" offset="0">
-        <phase duration="7"  state="srrGsrrrsrrGsrrr"/>
-        <phase duration="3"  state="GGGGsrrrsrrrsrrr"/>
+        <phase duration="8"  state="srrGsrrrsrrGsrrr"/>
+        <phase duration="3"  state="srrysrrrsrrysrrr"/>
+        <phase duration="1"  state="srrrsrrrsrrrsrrr"/>
         <phase duration="25" state="GGGrsrrrGGGrsrrr"/>
         <phase duration="3"  state="yyyrsrrryyyrsrrr"/>
+        <phase duration="1"  state="srrrsrrrsrrrsrrr"/>
         <phase duration="12" state="srrrsrrGsrrrsrrG"/>
+        <phase duration="3" state="srrrsrrysrrrsrry"/>
+        <phase duration="1" state="srrrsrrrsrrrsrrr"/>
         <phase duration="22" state="srrrGGGrsrrrGGGr"/>
+        <phase duration="3" state="srrryyyrsrrryyyr"/>
+        <phase duration="1" state="srrrrrrrsrrrrrrr"/>
     </tlLogic>
     <tlLogic id="TLS_nixon" type="static" programID="1" offset="23.0">
         <phase duration="8"  state="srrsrrGsrrsrrG"/>
-        <phase duration="6"  state="srrsrrrsrrGGGG"/>
+        <phase duration="3"  state="srrsrrysrrsrry"/>
+        <phase duration="1"  state="srrsrrrsrrsrrr"/>
         <phase duration="25" state="srrGGGrsrrGGGr"/>
         <phase duration="3"  state="srryyyrsrryyyr"/>
+        <phase duration="1"  state="srrsrrrsrrsrrr"/>
         <phase duration="10" state="srGsrrrsrGsrrr"/>
+        <phase duration="3" state="srysrrrsrysrrr"/>
+        <phase duration="1" state="srrsrrrsrrsrrr"/>
         <phase duration="22" state="GGrsrrrGGrsrrr"/>
+        <phase duration="3" state="yyrsrrryyrsrrr"/>
+        <phase duration="1" state="rrrsrrrrrrsrrr"/>
     </tlLogic>
 
     <junction id="J1" type="priority" x="4011.48" y="2957.34" incLanes="p16_0 p16_1" intLanes=":J1_0_0 :J1_0_1" shape="4015.27,2958.62 4019.26,2946.45 4017.20,2946.25 4015.70,2946.99 4014.47,2948.20 4013.24,2949.43 4011.73,2950.19 4009.66,2950.02 4007.68,2956.10">
