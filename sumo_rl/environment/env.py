@@ -406,6 +406,7 @@ class SumoEnvironment(gym.Env,VehicleController):
                     self.sumo.vehicle.setColor(vehicle_id,(0,255,0,255))
                     self.known_smart_vehicle_id.append(vehicle_id)
                     self.smart_vehicle[vehicle_id]=VehicleController(self,vehicle_id,self.sumo)
+                    #agent
                     log_file.write(f"matched vehicle{vehicle_id} has been set to type2\n")
                     break
                 else:
@@ -506,15 +507,34 @@ class SumoEnvironment(gym.Env,VehicleController):
     def _compute_observations(self):
         self.observations.update(
             {
-                ts: self.traffic_signals[ts].compute_observation()
-                for ts in self.ts_ids
-                if self.traffic_signals[ts].time_to_act or self.fixed_ts
+            ts: self.traffic_signals[ts].compute_observation()
+            for ts in self.ts_ids
+            if self.traffic_signals[ts].time_to_act or self.fixed_ts
             }
         )
-        for vehicle_id in self.known_smart_vehicle_id:
-            self.observations[vehicle_id] = self.smart_vehicle[vehicle_id].get_observation()  
-        return self.observations
+    
+        # 更新智能车辆的观察值
+        self.observations.update(
+            {#agent id
+            "online_smart_vehicle": self.smart_vehicle.compute_observation()
+            #if self.smart_vehicle.vehicle_time_to_act
+            }
+        )
+    
+        # 返回观察值的副本
+        return {
+            **{
+                ts: self.observations[ts].copy()
+                for ts in self.observations.keys()
+                if ts in self.traffic_signals and (self.traffic_signals[ts].time_to_act or self.fixed_ts)
+            },
+            **{
+                "online_smart_vehicle": self.observations.copy()
+                #if self.smart_vehicle.vehicle_time_to_act
+            }
+        }
 
+      
     def _compute_rewards(self):
         self.rewards.update(
             {
@@ -523,8 +543,7 @@ class SumoEnvironment(gym.Env,VehicleController):
                 if self.traffic_signals[ts].time_to_act or self.fixed_ts 
             }
         )
-        for vehicle_id in self.known_smart_vehicle_id:
-            self.rewards[vehicle_id]=self.smart_vehicle[vehicle_id].compute_reward()          
+        self.rewards["online_smart_vehicle"]=self.smart_vehicle[self.known_smart_vehicle_id].compute_reward()     
         return self.rewards
 
     @property
@@ -671,8 +690,9 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         self.seed()
         self.env = SumoEnvironment(**self._kwargs)
         self.render_mode = self.env.render_mode
-        self.agents = self.env.ts_ids
-        self.possible_agents = self.env.ts_ids
+        self.online_vehicle_name="online_smart_vehicle"
+        self.agents = self.env.ts_ids+[self.online_vehicle_name]
+        self.possible_agents = self.env.ts_ids+[self.online_vehicle_name]
         self._agent_selector = agent_selector(self.agents)
         self.agent_selection = self._agent_selector.reset()
         # spaces
@@ -692,8 +712,14 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
     def reset(self, seed: Optional[int] = None, options: Optional[dict] = None):
         """Reset the environment."""
         self.env.reset(seed=seed, options=options)
-        current_known_smart_vehicle_ids = [str(vehicle_id) for vehicle_id in self.env.known_smart_vehicle_id]
-        self.agents = self.env.ts_ids + current_known_smart_vehicle_ids
+        #current_known_smart_vehicle_ids = [str(vehicle_id) for vehicle_id in self.env.known_smart_vehicle_id]
+        #self.agents = self.env.ts_ids + self.env.known_smart_vehicle_id
+        #if self.env.known_smart_vehicle_id:
+            #self.agents=self.env.ts_ids+[self.online_smart_vehicle]
+            #self.online_vehicle_id=self.env.known_smart_vehicle_id[0]
+        #else:
+            #self.agents=self.env.ts_ids
+        self.agents = self.possible_agents[:]
         self.agent_selection = self._agent_selector.reset()
         self.rewards = {agent: 0 for agent in self.agents}
         self._cumulative_rewards = {agent: 0 for agent in self.agents}
@@ -701,6 +727,12 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         self.truncations = {a: False for a in self.agents}
         self.compute_info()
 
+    def update_online_vehicle(self):
+        """Update the ID that the fixed vehicle name refers to."""
+        if self.env.known_smart_vehicle_id:
+            self.online_vehicle_id = self.env.known_smart_vehicle_id[0]
+        else:
+            self.online_vehicle_id = None
     def compute_info(self):
         """Compute the info for the current step."""
         self.infos = {a: {} for a in self.agents}
@@ -737,12 +769,12 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
 
     def step(self, action):
         self.env._assign_next_type2_vehicle()
-        current_known_smart_vehicle_ids = [str(vehicle_id) for vehicle_id in self.env.known_smart_vehicle_id]
-        self.agents = self.env.ts_ids + current_known_smart_vehicle_ids
+        self.update_online_vehicle()
+        #current_known_smart_vehicle_ids = [str(vehicle_id) for vehicle_id in self.env.known_smart_vehicle_id]
         with open("tagent.log","a")as agent_file:
             agent_file.write(f"agent_id: {self.agents}\n")
-        
-        for new_agent in current_known_smart_vehicle_ids:
+        '''
+        for new_agent in self.env.known_smart_vehicle_id:
             self.rewards[new_agent] = 0
             self.terminations[new_agent] = False
             self.truncations[new_agent] = False
@@ -750,6 +782,7 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
             self.action_spaces[new_agent] = self.env.action_spaces(new_agent)
             self.observation_spaces[new_agent] = self.env.observation_spaces(new_agent)
             #self._cumulative_rewards[new_agent] = 0
+        '''    
         """Step the environment."""
         if self.truncations[self.agent_selection] or self.terminations[self.agent_selection]:
             return self._was_dead_step(action)
@@ -765,8 +798,8 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         if not self.env.fixed_ts:
             if agent in self.env.ts_ids:
                 self.env._apply_actions({agent: action})
-            else:
-                self.env.smart_vehicle[agent].set_next_action(action)
+            elif agent == self.online_vehicle_name:
+                self.env.smart_vehicle[online_vehicle_id].set_next_action(action)
 
         if self._agent_selector.is_last():
             if not self.env.fixed_ts:
@@ -785,8 +818,8 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         self.truncations = {a: done for a in self.agents}
 
         self.agent_selection = self._agent_selector.next()
-        self._cumulative_rewards[agent] = 0
         with open("tagent.log","a")as agent_file:
-            agent_file.write(f"agent222: {agent}\n")
+            agent_file.write(f"agentnext: {self.agent_selection}\n")
+        self._cumulative_rewards[agent] = 0
         self._accumulate_rewards()
 

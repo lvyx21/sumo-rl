@@ -51,13 +51,10 @@ class VehicleController:
         self.next_action_time = env.sim_step
         self.delta_time=5
         self.num_surrounding_vehicles=5
-        #num_traffic_signals=len(self.env.ts_ids)
-        #num_observations=4+len(self.env.ts_ids)+self.num_surrounding_vehicles*4+len(self.env.ts_ids)*2
         num_observations=5+len(self.env.ts_ids)
-        self.observation_space=spaces.Box(low=0,high=1,shape=(num_observations,),dtype=np.float32)
-        #self.action_space = Box(low=-self.sumo.vehicle.getDecel(self.id), high=self.sumo.vehicle.getAccel(self.id), shape=(1,), dtype=np.float32)
-
-        self.action_space = Box(low=-4, high=4, shape=(1,), dtype=np.float32)
+        self.observation_fn = self.env.observation_class(self)
+        self.observation_space = self.observation_fn.observation_space()
+        self.action_space = spaces.Discrete(4)
         self.next_action=None
         
 
@@ -102,8 +99,10 @@ class VehicleController:
         # 将所有 one-hot 向量展平（flatten）为一个长向量
         return np.array(one_hot_encoded).flatten()
     
-    
-    def get_observation(self):
+    def compute_observation(self):
+        """Computes the observation of the traffic signal."""
+        return self.observation_fn()
+    def _observation_fn_default(self):
         max_speed = self.sumo.vehicle.getMaxSpeed(self.id)
         max_length = self.sumo.lane.getLength(self.sumo.vehicle.getLaneID(self.id))
         
@@ -139,34 +138,12 @@ class VehicleController:
             encoded_state = self.one_hot_encode_traffic_signal(traffic_signal_state)
            
 
-        return np.array(speed_observe+lead_speed_observe+lead_distance_observe+encoded_state, dtype=np.float32)
-        
+        observation=np.array(speed_observe+lead_speed_observe+lead_distance_observe+encoded_state, dtype=np.float32)
+        return observation
     
         
     def compute_reward(self):
-        """
-        Compute the reward for the vehicle.
-        """
-        '''
-        # 示例奖励函数：根据车辆速度给予奖励，速度越高奖励越高
-        speed = self.sumo.vehicle.getSpeed(self.id)
-        waiting_time=self.sumo.vehicle.getWaitingTime(self.id)
-        time_loss = self.sumo.vehicle.getTimeLoss(self.id) 
-        type2_waiting_time = sum(self.sumo.vehicle.getWaitingTime(veh) for veh in self.sumo.vehicle.getIDList() if self.sumo.vehicle.getTypeID(veh) == 'type2')
-        type2_time_loss = sum(self.sumo.vehicle.getTimeLoss(veh) for veh in self.sumo.vehicle.getIDList() if self.sumo.vehicle.getTypeID(veh) == 'type2')
-        collision_reward = 0
-        collision_weight = 1000 
-        collisions = self.sumo.simulation.getCollidingVehiclesIDList()
-        if self.id in collisions:
-            collision_reward = -1 * collision_weight
-    
-        reward =-time_loss+speed/self.sumo.vehicle.getMaxSpeed(self.id)-waiting_time+collision_reward
-        return reward
-        '''
-            
-        """
-        Compute the reward for the vehicle with type id = 'type2'.
-        """
+
         # 检查车辆类型
         if self.sumo.vehicle.getTypeID(self.id) != 'type2':
             return 0  # 非 type2 类型的车辆不计算奖励
