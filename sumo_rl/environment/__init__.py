@@ -2,6 +2,7 @@
 
 from gymnasium.envs.registration import register
 
+from .ParallelPettingZooEnv import ParallelPettingZooEnv
 
 register(
     id="sumo-rl-v0",

@@ -195,14 +195,17 @@ class SumoEnvironment(gym.Env,VehicleController):
             }
         #always smart vehicle
         
+        # WZ: we need to initialize the smart vehicle agent at the very beginning. 
+        # Adding controllable smart vehicle is the next step to be done in the update.
+        # Therefore, we should not add if sentence as well as appending smart vehicle id here. These should be done later.
         for vehicle_id in self.vehicle_ids:
-            if conn.vehicle.getTypeID(vehicle_id)=='type2':
+            if conn.vehicle.getTypeID(vehicle_id)=='type2': # WZ: when will the vehicle type2 be assigned? In the whole repo, I only found you check if vehicle type is type2.
                 self.known_smart_vehicle_id.append(vehicle_id)
-                self.smart_vehicle[vehicle_id]= VehicleController(
+                self.smart_vehicle= {vehicle_id: VehicleController(
                     self,
                     vehicle_id,
                     conn,
-                )
+                )}
         
                     
                 
@@ -582,7 +585,7 @@ class SumoEnvironment(gym.Env,VehicleController):
         else:
             #vehicle_ids = traci.vehicle.getIDList()
             #return spaces.Box(low=np.zeros(3, dtype=np.float32),high=np.ones(3, dtype=np.float32),)
-            return self.smart_vehicle[self.default_vehicle].observation_space
+            return self.smart_vehicle["default_vehicle"].observation_space # WZ: you will be restricted to only one vehicle agent by assigning obs space like this, although good for now.
 
     def action_spaces(self, agent_id: str) -> gym.spaces.Discrete:
         if agent_id in self.ts_ids:
@@ -707,8 +710,8 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         self.possible_agents = self.env.ts_ids+[self.env.online_vehicle_name]
         self._agent_selector = agent_selector(self.agents)
         self.agent_selection = self._agent_selector.reset()
-        self.default_vehicle="default_vehicle"
-        self.smart_vehicle[self.default_vehicle] = VehicleController(self.env, self.default_vehicle, self.env.sumo)
+        # self.default_vehicle="default_vehicle"
+        self.smart_vehicle= {"default_vehicle": VehicleController(self.env, "default_vehicle", self.env.sumo)}
         
         # spaces
         self.action_spaces = {a: self.env.action_spaces(a) for a in self.agents}

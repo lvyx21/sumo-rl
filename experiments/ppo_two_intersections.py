@@ -13,7 +13,8 @@ import ray
 import traci
 from ray import tune
 from ray.rllib.algorithms.ppo import PPOConfig
-from ray.rllib.env.wrappers.pettingzoo_env import ParallelPettingZooEnv
+# from ray.rllib.env.wrappers.pettingzoo_env import ParallelPettingZooEnv
+from sumo_rl.environment.ParallelPettingZooEnv import ParallelPettingZooEnv
 from ray.tune.registry import register_env
 
 import sumo_rl
