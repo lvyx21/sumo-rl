@@ -157,11 +157,12 @@ class SumoEnvironment(gym.Env,VehicleController):
         self.observation_class = observation_class  
         self.smart_vehicle={}
         self.known_smart_vehicle_id=[]
+        self.online_vehicle_name="online_smart_vehicle"
         self.last_type2_vehicle = None
         self.vehicle_assignment_index = 0
         self.agent_ids=self.ts_ids+self.known_smart_vehicle_id
-        self.vehicle_observation_space=spaces.Box(low=0,high=1,shape=(4,),dtype=np.float32)
-        self.vehicle_action_space=spaces.Discrete(3)
+        #self.vehicle_observation_space=spaces.Box(low=0,high=1,shape=(4,),dtype=np.float32)
+        #self.vehicle_action_space=spaces.Discrete(3)
         if isinstance(self.reward_fn, dict):
             self.traffic_signals = {
                 ts: TrafficSignal(
@@ -192,6 +193,8 @@ class SumoEnvironment(gym.Env,VehicleController):
                 )
                 for ts in self.ts_ids
             }
+        #always smart vehicle
+        
         for vehicle_id in self.vehicle_ids:
             if conn.vehicle.getTypeID(vehicle_id)=='type2':
                 self.known_smart_vehicle_id.append(vehicle_id)
@@ -200,7 +203,7 @@ class SumoEnvironment(gym.Env,VehicleController):
                     vehicle_id,
                     conn,
                 )
-     
+        
                     
                 
             
@@ -328,7 +331,6 @@ class SumoEnvironment(gym.Env,VehicleController):
                     self.sumo,
                     )
 
-        print("Known Smart Vehicle IDs:", self.known_smart_vehicle_id) 
         self.vehicles = dict()
         vehicle_ids = self.sumo.vehicle.getIDList()
         self.vehicles.update ({vehicle_id: {} for vehicle_id in vehicle_ids})
@@ -514,24 +516,32 @@ class SumoEnvironment(gym.Env,VehicleController):
         )
     
         # 更新智能车辆的观察值
-        self.observations.update(
-            {#agent id
-            "online_smart_vehicle": self.smart_vehicle.compute_observation()
-            #if self.smart_vehicle.vehicle_time_to_act
-            }
-        )
-    
+        if self.known_smart_vehicle_id:
+            obs=self.smart_vehicle[self.known_smart_vehicle_id].compute_observation()
+            self.observations[self.online_vehicle_name]=obs
+        else:
+            self.observations[self.online_vehicle_name]=np.zeros(3)
+
+        vehicle_dic={
+            self.online_vehicle_name: self.observations[self.online_vehicle_name].copy()
+                #if self.smart_vehicle.vehicle_time_to_act
+        }
         # 返回观察值的副本
-        return {
-            **{
-                ts: self.observations[ts].copy()
+        print({
+            
+                **{ts: self.observations[ts].copy()
                 for ts in self.observations.keys()
                 if ts in self.traffic_signals and (self.traffic_signals[ts].time_to_act or self.fixed_ts)
-            },
-            **{
-                "online_smart_vehicle": self.observations.copy()
-                #if self.smart_vehicle.vehicle_time_to_act
-            }
+                },
+                **vehicle_dic
+        })
+        return {
+            
+                **{ts: self.observations[ts].copy()
+                for ts in self.observations.keys()
+                if ts in self.traffic_signals and (self.traffic_signals[ts].time_to_act or self.fixed_ts)
+                },
+                **vehicle_dic
         }
 
       
@@ -551,7 +561,7 @@ class SumoEnvironment(gym.Env,VehicleController):
         if self.single_agent:
             if self.agent_id in self.ts_ids:
                 return self.traffic_signals[self.ts_ids[0]].observation_space
-            elif self.agent_id in self.known_smart_vehicle_id:
+            elif self.agent_id in self.online_vehicle_name:
                 return self.smart_vehicle[self.known_smart_vehicle_id[0]].observation_space
         else:
             return {agent_id: self.observation_spaces(agent_id) for agent_id in self.agent_ids}
@@ -569,8 +579,10 @@ class SumoEnvironment(gym.Env,VehicleController):
     def observation_spaces(self, agent_id: str):
         if agent_id in self.ts_ids:
             return self.traffic_signals[agent_id].observation_space
-        elif agent_id in self.known_smart_vehicle_id:
-            return self.smart_vehicle[agent_id].observation_space
+        else:
+            #vehicle_ids = traci.vehicle.getIDList()
+            #return spaces.Box(low=np.zeros(3, dtype=np.float32),high=np.ones(3, dtype=np.float32),)
+            return self.smart_vehicle[self.default_vehicle].observation_space
 
     def action_spaces(self, agent_id: str) -> gym.spaces.Discrete:
         if agent_id in self.ts_ids:
@@ -690,11 +702,14 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         self.seed()
         self.env = SumoEnvironment(**self._kwargs)
         self.render_mode = self.env.render_mode
-        self.online_vehicle_name="online_smart_vehicle"
-        self.agents = self.env.ts_ids+[self.online_vehicle_name]
-        self.possible_agents = self.env.ts_ids+[self.online_vehicle_name]
+        #self.online_vehicle_name="online_smart_vehicle"
+        self.agents = self.env.ts_ids+[self.env.online_vehicle_name]
+        self.possible_agents = self.env.ts_ids+[self.env.online_vehicle_name]
         self._agent_selector = agent_selector(self.agents)
         self.agent_selection = self._agent_selector.reset()
+        self.default_vehicle="default_vehicle"
+        self.smart_vehicle[self.default_vehicle] = VehicleController(self.env, self.default_vehicle, self.env.sumo)
+        
         # spaces
         self.action_spaces = {a: self.env.action_spaces(a) for a in self.agents}
         self.observation_spaces = {a: self.env.observation_spaces(a) for a in self.agents}
@@ -726,6 +741,9 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         self.terminations = {a: False for a in self.agents}
         self.truncations = {a: False for a in self.agents}
         self.compute_info()
+        #self.smart_vehicle = {}
+        #for vehicle_id in self.env.known_smart_vehicle_id:
+            #self.smart_vehicle[vehicle_id] = VehicleController(self.env, vehicle_id, self.env.sumo)
 
     def update_online_vehicle(self):
         """Update the ID that the fixed vehicle name refers to."""

@@ -53,7 +53,12 @@ class VehicleController:
         self.num_surrounding_vehicles=5
         num_observations=5+len(self.env.ts_ids)
         self.observation_fn = self.env.observation_class(self)
-        self.observation_space = self.observation_fn.observation_space()
+        #自定义
+        #self.observation_space = self.observation_fn.observation_space()
+        self.observation_space=spaces.Box(
+            low=np.zeros(3, dtype=np.float32),
+            high=np.ones(3, dtype=np.float32),
+        )
         self.action_space = spaces.Discrete(4)
         self.next_action=None
         
@@ -132,13 +137,14 @@ class VehicleController:
         '''
   
     
-        for ts_id in self.env.ts_ids:
-            traffic_signal_state = self.sumo.trafficlight.getRedYellowGreenState(ts_id)
+        #for ts_id in self.env.ts_ids:
+            #traffic_signal_state = self.sumo.trafficlight.getRedYellowGreenState(ts_id)
             # 对每个交通信号状态字符串进行 one-hot 编码
-            encoded_state = self.one_hot_encode_traffic_signal(traffic_signal_state)
+            #encoded_state = self.one_hot_encode_traffic_signal(traffic_signal_state)
            
 
-        observation=np.array(speed_observe+lead_speed_observe+lead_distance_observe+encoded_state, dtype=np.float32)
+        #observation=np.array(speed_observe+lead_speed_observe+lead_distance_observe+encoded_state, dtype=np.float32)
+        observation=np.array(speed_observe+lead_speed_observe+lead_distance_observe, dtype=np.float32)
         return observation
     
         
