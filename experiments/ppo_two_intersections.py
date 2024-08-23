@@ -6,29 +6,31 @@ if "SUMO_HOME" in os.environ:
     sys.path.append(tools)
 else:
     sys.exit("Please declare the environment variable 'SUMO_HOME'")
-
 import numpy as np
 import pandas as pd
 import ray
 import traci
 from ray import tune
 from ray.rllib.algorithms.ppo import PPOConfig
-# from ray.rllib.env.wrappers.pettingzoo_env import ParallelPettingZooEnv
+#from ray.rllib.env.wrappers.pettingzoo_env import ParallelPettingZooEnv
 from sumo_rl.environment.ParallelPettingZooEnv import ParallelPettingZooEnv
 from ray.tune.registry import register_env
 
 import sumo_rl
-from supersuit import pad_observations_v0  # 引入 SuperSuit 包装器
+from supersuit import pad_observations_v0 
+#from supersuit import pad_action_space_v0
+ # 引入 SuperSuit 包装器
 
 def create_env(env_config):
     env = sumo_rl.parallel_env(
-        net_file="../sumo_rl/nets/plymouth/plymouth_nixon_and_huron.net.xml",
-        route_file="../sumo_rl/nets/plymouth/plymouth.rou.xml",
-        out_csv_name="../outputs/two_intersections/ppo",
+        net_file="sumo_rl/nets/plymouth/plymouth_nixon_and_huron.net.xml",
+        route_file="sumo_rl/nets/plymouth/plymouth.rou.xml",
+        out_csv_name="outputs/two_intersections/ppo",
         use_gui= False,
         num_seconds=80000,
     )
-    env = pad_observations_v0(env)  # 使用 pad_observations_v0 包装器
+    env = pad_observations_v0(env)
+    #env=pad_action_space_v0(env)  # 使用 pad_observations_v0 包装器
     return env
 
 if __name__ == "__main__":

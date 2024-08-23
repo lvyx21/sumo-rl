@@ -155,7 +155,7 @@ class SumoEnvironment(gym.Env,VehicleController):
         self.ts_ids = list(conn.trafficlight.getIDList())
         self.vehicle_ids=traci.vehicle.getIDList()
         self.observation_class = observation_class  
-        self.smart_vehicle={}
+        self.smart_vehicle= {"default_vehicle": VehicleController(self, "default_vehicle", self.sumo)}
         self.known_smart_vehicle_id=[]
         self.online_vehicle_name="online_smart_vehicle"
         self.last_type2_vehicle = None
@@ -583,8 +583,6 @@ class SumoEnvironment(gym.Env,VehicleController):
         if agent_id in self.ts_ids:
             return self.traffic_signals[agent_id].observation_space
         else:
-            #vehicle_ids = traci.vehicle.getIDList()
-            #return spaces.Box(low=np.zeros(3, dtype=np.float32),high=np.ones(3, dtype=np.float32),)
             return self.smart_vehicle["default_vehicle"].observation_space # WZ: you will be restricted to only one vehicle agent by assigning obs space like this, although good for now.
 
     def action_spaces(self, agent_id: str) -> gym.spaces.Discrete:
@@ -711,9 +709,12 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         self._agent_selector = agent_selector(self.agents)
         self.agent_selection = self._agent_selector.reset()
         # self.default_vehicle="default_vehicle"
-        self.smart_vehicle= {"default_vehicle": VehicleController(self.env, "default_vehicle", self.env.sumo)}
+        #self.smart_vehicle= {"default_vehicle": VehicleController(self.env, "default_vehicle", self.env.sumo)}
         
         # spaces
+        #max_actions = max([self.env.action_spaces(agent).n for agent in self.agents])
+        #self.action_spaces[agent] = Discrete(max_discrete_action_space)
+
         self.action_spaces = {a: self.env.action_spaces(a) for a in self.agents}
         self.observation_spaces = {a: self.env.observation_spaces(a) for a in self.agents}
 
