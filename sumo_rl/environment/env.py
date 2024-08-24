@@ -520,7 +520,7 @@ class SumoEnvironment(gym.Env,VehicleController):
     
         # 更新智能车辆的观察值
         if self.known_smart_vehicle_id:
-            obs=self.smart_vehicle[self.known_smart_vehicle_id].compute_observation()
+            obs=self.smart_vehicle[self.known_smart_vehicle_id[0]].compute_observation()
             self.observations[self.online_vehicle_name]=obs
         else:
             self.observations[self.online_vehicle_name]=np.zeros(3)
@@ -556,7 +556,10 @@ class SumoEnvironment(gym.Env,VehicleController):
                 if self.traffic_signals[ts].time_to_act or self.fixed_ts 
             }
         )
-        self.rewards["online_smart_vehicle"]=self.smart_vehicle[self.known_smart_vehicle_id].compute_reward()     
+        if self.known_smart_vehicle_id:
+            self.rewards["online_smart_vehicle"]=self.smart_vehicle[self.known_smart_vehicle_id[0]].compute_reward()
+        else:
+            self.rewards["online_smart_vehicle"]=0.0     
         return self.rewards
 
     @property
@@ -588,8 +591,8 @@ class SumoEnvironment(gym.Env,VehicleController):
     def action_spaces(self, agent_id: str) -> gym.spaces.Discrete:
         if agent_id in self.ts_ids:
             return self.traffic_signals[agent_id].action_space
-        elif agent_id in self.known_smart_vehicle_id:
-            return self.smart_vehicle[agent_id].action_space
+        else:
+            return self.smart_vehicle["default_vehicle"].action_space
         
     
 
@@ -820,8 +823,9 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         if not self.env.fixed_ts:
             if agent in self.env.ts_ids:
                 self.env._apply_actions({agent: action})
-            elif agent == self.online_vehicle_name:
-                self.env.smart_vehicle[online_vehicle_id].set_next_action(action)
+            elif agent == self.env.online_vehicle_name:
+                if self.env.known_smart_vehicle_id:
+                    self.env.smart_vehicle[self.env.known_smart_vehicle_id[0]].set_next_action(action)
 
         if self._agent_selector.is_last():
             if not self.env.fixed_ts:

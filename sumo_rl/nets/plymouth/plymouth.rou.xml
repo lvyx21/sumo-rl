@@ -17,6 +17,7 @@
 --> 
 
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="type2" accel="1.0" decel="1.0" sigma="0.5" length="5" minGap="2.5" maxSpeed="13.89" color="0,1,0"/>
     <vehicle id="49.0" depart="0.00" departLane="random">
         <route edges="-p17 -p15 -p14 -p13 -p12 -p11 -p10"/>
     </vehicle>

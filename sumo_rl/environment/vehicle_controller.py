@@ -53,6 +53,7 @@ class VehicleController:
         self.num_surrounding_vehicles=5
         num_observations=5+len(self.env.ts_ids)
         self.observation_fn = self.env.observation_class(self)
+
         #自定义
         #self.observation_space = self.observation_fn.observation_space()
         self.observation_space=spaces.Box(
@@ -106,7 +107,8 @@ class VehicleController:
     
     def compute_observation(self):
         """Computes the observation of the traffic signal."""
-        return self.observation_fn()
+        return self._observation_fn_default()
+    
     def _observation_fn_default(self):
         max_speed = self.sumo.vehicle.getMaxSpeed(self.id)
         max_length = self.sumo.lane.getLength(self.sumo.vehicle.getLaneID(self.id))
