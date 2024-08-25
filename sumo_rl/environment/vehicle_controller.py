@@ -146,7 +146,7 @@ class VehicleController:
            
 
         #observation=np.array(speed_observe+lead_speed_observe+lead_distance_observe+encoded_state, dtype=np.float32)
-        observation=np.array(speed_observe+lead_speed_observe+lead_distance_observe, dtype=np.float32)
+        observation=np.array([speed_observe,lead_speed_observe,lead_distance_observe], dtype=np.float32)
         return observation
     
         
