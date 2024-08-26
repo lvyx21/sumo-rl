@@ -63,7 +63,23 @@ class VehicleController:
         self.action_space = spaces.Discrete(4)
         self.next_action=None
         
+    def update(self):
+        if self.id not in self.sumo.vehicle.getIDList():
+            # The vehicle has left the environment, so it should be removed.
+            del self.env.smart_vehicle[self.id]
+            if self.id in self.env.known_smart_vehicle_id:
+                self.env.known_smart_vehicle_id.remove(self.id)
+            return
 
+        self.current_speed = self.sumo.vehicle.getSpeed(self.id)
+        if self.vehicle_time_to_act():
+            self.execute_action()
+
+    def execute_action(self):
+        if self.next_action is not None:
+            self.set_next_action(self.next_action)
+            self.next_action = None
+    '''
     def update(self):
         self.current_speed=self.sumo.vehicle.getSpeed(self.id)
         if self.vehicle_time_to_act():
@@ -73,7 +89,7 @@ class VehicleController:
         if self.next_action is not None:
             self.set_next_action(self.next_action)
             self.next_action=None
-
+    '''
     def set_next_action(self, action):
         """
         Sets the next action for the vehicle which could be accelerate, maintain, or decelerate.
@@ -85,6 +101,8 @@ class VehicleController:
             return  # 未到下一次行为设置时间
         new_speed = self.current_speed + action * self.delta_time
         self.sumo.vehicle.setSpeed(self.id, new_speed)
+        with open("vehicle.log","a")as vehicle_file:
+            vehicle_file.write(f"vehicle speed set.\n")
         self.next_action_time = self.env.sim_step + self.delta_time
         #setspeed可能会导致车辆光速穿过
 

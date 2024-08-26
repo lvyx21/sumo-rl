@@ -15,16 +15,16 @@ from ray.rllib.algorithms.ppo import PPOConfig
 #from ray.rllib.env.wrappers.pettingzoo_env import ParallelPettingZooEnv
 from sumo_rl.environment.ParallelPettingZooEnv import ParallelPettingZooEnv
 from ray.tune.registry import register_env
-
 import sumo_rl
 from supersuit import pad_observations_v0 
 #from supersuit import pad_action_space_v0
  # 引入 SuperSuit 包装器
 
+
 def create_env(env_config):
     env = sumo_rl.parallel_env(
         net_file="sumo_rl/nets/plymouth/plymouth_nixon_and_huron.net.xml",
-        route_file="sumo_rl/nets/plymouth/plymouth.rou.xml",
+        route_file="sumo_rl/nets/plymouth/plymouth_test.rou.xml",
         out_csv_name="outputs/two_intersections/ppo",
         use_gui= False,
         num_seconds=80000,

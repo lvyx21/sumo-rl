@@ -96,7 +96,7 @@ class SumoEnvironment(gym.Env,VehicleController):
         min_green: int = 5,
         max_green: int = 50,
         single_agent: bool = False,
-        reward_fn: Union[str, Callable, dict] = "custom-function",
+        reward_fn: Union[str, Callable, dict] = "diff-waiting-time",
         observation_class: ObservationFunction = DefaultObservationFunction,
         add_system_info: bool = True,
         add_per_agent_info: bool = True,
@@ -463,11 +463,21 @@ class SumoEnvironment(gym.Env,VehicleController):
                 self.traffic_signals[ts].update()
                 if self.traffic_signals[ts].time_to_act:
                     time_to_act = True
+            '''
             for vehicle_id,vehicle in self.smart_vehicle.items():
                 vehicle.update()
                 if vehicle.vehicle_time_to_act():
                     vehicle_time_to_act=True
-        
+            '''
+            for vehicle_id, vehicle in list(self.smart_vehicle.items()):
+                vehicle.update()
+                if vehicle.vehicle_time_to_act():
+                    vehicle_time_to_act = True
+                    with open("vehicle.log","a")as vehicle_file:
+                        vehicle_file.write(f"vehicle acting now.\n")
+
+
+
         
             
                 
