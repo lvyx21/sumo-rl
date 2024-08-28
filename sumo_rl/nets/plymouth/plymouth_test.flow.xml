@@ -1,0 +1,13 @@
+<routes>
+        <interval begin="0" end="3600">
+        <!-- nixon -->
+        <flow id="39" from="p10" probability="0.16625" departLane="random" />
+        <flow id="40" from="-4#4" probability="0.07581" departLane="random" />
+        <flow id="41" from="4#1" probability="0.03381" departLane="random" />
+        <!-- huron -->
+        <flow id="49" from="-p17" probability="0.21133" departLane="random" />
+        <flow id="50" from="-5#4" probability="0.084" departLane="random" />
+        <flow id="51" from="5#1" probability="0.17444" departLane="random" />
+        
+    </interval>
+</routes>
