@@ -114,4 +114,4 @@ settings.json
 /logs
 /wandb
 
-*.xml
+# *.xml
