@@ -28,7 +28,7 @@ import supersuit as ss  # 引入 SuperSuit 包装器
 #parser.add_argument("checkpoint_dir", help="Directory containing checkpoint files.")
 #args = parser.parse_args()
 if __name__ == "__main__":
-    checkpoint_dir = "/home/lxh/ray_results/PPO/PPO_two_intersections_761db_00000_0_2024-08-13_17-23-42/checkpoint_000014"
+    checkpoint_dir = "/home/lvyx/ray_results/PPO/PPO_two_intersections_9bc0a_00000_0_2024-08-27_21-31-04/checkpoint_000033"
     ray.init()
     
     # 注册SUMO环境
@@ -36,9 +36,9 @@ if __name__ == "__main__":
     def create_env(_):
         env = sumo_rl.parallel_env(
             net_file="sumo_rl/nets/plymouth/plymouth_nixon_and_huron.net.xml",
-            route_file="sumo_rl/nets/plymouth/plymouth_test_rou.xml",
+            route_file="sumo_rl/nets/plymouth/plymouth.rou.xml",
             out_csv_name="outputs/plymouth/ppo",
-            use_gui=False,
+            use_gui=True,
             num_seconds=80000,
         )
         env = ss.pad_observations_v0(env)  # 使用 pad_observations_v0 包装器

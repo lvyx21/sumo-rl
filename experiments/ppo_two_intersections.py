@@ -68,7 +68,7 @@ if __name__ == "__main__":
         "PPO",
         name="PPO",
         stop={"timesteps_total": 100000},
-        checkpoint_freq=10,
+        checkpoint_freq=5,
         local_dir="~/ray_results/" + env_name,
         config=config.to_dict(),
     )

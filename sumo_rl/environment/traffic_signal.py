@@ -310,7 +310,7 @@ class TrafficSignal:
         type2_waiting_time = sum(self.sumo.vehicle.getWaitingTime(veh) for veh in self.sumo.vehicle.getIDList() if self.sumo.vehicle.getTypeID(veh) == 'type2')
         type2_time_loss = sum(self.sumo.vehicle.getTimeLoss(veh) for veh in self.sumo.vehicle.getIDList() if self.sumo.vehicle.getTypeID(veh) == 'type2')
     
-        reward =-(total_waiting_time+stops)-4*type2_waiting_time
+        reward =-stops-100*type2_waiting_time
         return reward
 
     
